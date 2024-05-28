@@ -1,0 +1,84 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIYA</title>
+    <link href="../../output.css" rel="stylesheet">
+    <link href="../../css/global.css" rel="stylesheet">
+    <link href="../../css/animations.css" rel="stylesheet">
+    <link href="../../css/test.css" rel="stylesheet">
+    <script defer src="../../JS/global2.js"></script>
+    <script defer src="../../JS/collections.js"></script>
+    <script src="https://kit.fontawesome.com/d17e4552c5.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+</head>
+
+<body class="font-serif relative">
+
+    <div>
+
+        <div class="topBar bg-black w-full h-8 text-sm text-center flex items-center justify-center z-100 font-sans">
+            <span class="lg:w-3/12" id="sliderText"></span>
+        </div>
+
+        <div class="relative h-max w-full inset-0 p-3 lg:px-32 zindex-100 2xl:px-80">
+            <div id="navbar-container"></div>
+        </div>
+    </div>
+
+    <div class="mainContent">
+        <main>
+            <div class="banner relative w-full h-64 md:h-96 primary-bgColor flex items-center justify-center">
+                <img id="coverImg" src="" alt="" class="absolute inset-0 w-full h-full object-cover z-0">
+                <h1 id="collection-title" class="text-4xl text-white z-10">Alle Smykker</h1>
+            </div>
+
+            <div class="p-2 md:p-14 md:px-20">
+                <section
+                    class="filterBar my-3 md:m-0 md:mb-10 md:mx-5 flex flex-row justify-between items-center px-10">
+
+                    <div class="flex gap-3 md:gap-10">
+                        <div></div>
+                        <div class="dropdown py-2 ">
+                            <button id="material-dropdown" class="dropbtn">Materiale <i
+                                    class="fa-solid fa-chevron-down fa-xs mx-1" style="color: #9c9c9c;"></i></button>
+                            <div class="dropdown-content dropdown-material-content">
+                                <a href="#">18k Guldbelagt</a>
+                                <a href="#">Sterling sølv</a>
+                                <a href="#">Stainless steel</a>
+                            </div>
+                        </div>
+                        <div class="dropdown py-2 ">
+                            <button id="collection-dropdown" class="dropbtn">Kollektion <i
+                                    class="fa-solid fa-chevron-down fa-xs mx-1" style="color: #9c9c9c;"></i></button>
+                            <div class="dropdown-content dropdown-collection-content">
+                                <a href="#">#kollektion</a>
+                                <a href="#">#kollektion</a>
+                                <a href="#">#kollektion</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>Sorter efter:</div>
+                    <!-- select her -->
+                </section>
+
+                <section class="flex justify-center">
+                    <div id="product-list" class="flex flex-wrap md:gap-5 justify-center">
+                        <!-- Your product items here -->
+                    </div>
+                </section>
+            </div>
+        </main>
+
+    </div>
+
+    <footer id="footer" class="footer flex flex-col justify-between "></footer>
+    </div>
+</body>
+
+</html>

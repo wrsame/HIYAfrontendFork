@@ -1,0 +1,64 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIYA</title>
+    <link href="../output.css" rel="stylesheet">
+    <link href="../css/global.css" rel="stylesheet">
+    <link href="../css/animations.css" rel="stylesheet">
+    <script defer src="../JS/global2.js"></script>
+    <script src="https://kit.fontawesome.com/d17e4552c5.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-serif relative">
+
+    <div>
+        <div class="topBar bg-black w-full h-8 text-sm text-center flex items-center justify-center z-100 font-sans">
+            <span class="lg:w-3/12" id="sliderText"></span>
+        </div>
+
+        <div class="relative h-max w-full inset-0 p-3 lg:px-32 zindex-100 2xl:px-80">
+            <div id="navbar-container"></div>
+        </div>
+    </div>
+
+
+    <div class="mainContent p-10">
+
+        <body class="bg-white text-black">
+            <section class="max-w-3xl mx-auto p-5">
+                <h1 class="text-6xl mb-14 greenTxtColor ">Kontakt</h1>
+                <p class="mb-6 font-sans">I tilfælde af spørgsmål, kontakt venligst kundeservice på mail:
+                    kontakt@shiya.com
+                    eller ring til os, hverdage man-tors fra kl. 9.00 til 17.00 og fredag 09.00 til 16.00 på følgende
+                    nummer +45 11 22 33 44.</p>
+                <div class="mb-10 font-sans">
+                    <p class="font-semibold">Hovedkvarter:</p>
+                    <p>abcd abcd</p>
+                    <p>Mesterlodden 102</p>
+                    <p>2200 Nørrebro</p>
+                    <p>Danmark</p>
+                </div>
+                <form class="contact-form">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                        <input type="text" placeholder="Navn" class="border border-black p-2 w-full">
+                        <input type="email" placeholder="Mailadresse *" class="border border-black p-2 w-full">
+                    </div>
+                    <input type="text" placeholder="Telefonnummer" class="border border-black p-2 w-full mb-5">
+                    <textarea placeholder="Kommentar" class="border border-black p-2 w-full mb-5 h-32"></textarea>
+                    <button type="submit" class="primary-bgColor text-white px-5 py-2">Send</button>
+                </form>
+            </section>
+        </body>
+    </div>
+    <footer id="footer" class="footer flex flex-col justify-between "></footer>
+    </footer>
+    </div>
+
+</body>
+
+</html>

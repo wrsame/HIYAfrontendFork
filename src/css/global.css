@@ -1,0 +1,137 @@
+html {
+  overflow: -moz-scrollbars-none;
+  /* For ældre versioner af Firefox */
+  -ms-overflow-style: none;
+  /* For Internet Explorer og Edge */
+  scrollbar-width: none;
+  /* For Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none;
+  /* For Chrome, Safari, og Opera */
+}
+
+.primary-bgColor {
+  background-color: #475045;
+}
+
+.primary-light-col {
+  background-color: #D8D3C8;
+}
+
+.primary-superlight-col {
+  background-color: #ece9e1;
+}
+
+.light-blue-col {
+  background-color: #909B99
+}
+
+.brown-bg-color {
+  background-color: #8A6E4E
+}
+
+.dBrown-bg-color {
+  background-color: #604424
+}
+
+.greenTxtColor {
+  color: #475045;
+}
+
+.topBar {
+  color: white;
+  position: relative;
+  z-index: 10;
+
+}
+
+.mainBgPicture {}
+
+.pictureContainer {
+  background-color: rgb(209 201 192)
+}
+
+button {
+  padding: 5px 25px;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+button:focus,
+button:hover {
+  border: none;
+  outline: none;
+
+}
+
+
+
+.section3Bg {}
+
+.getTheLookBtn {
+
+  padding: 5px 15px;
+
+  border-radius: 5px;
+  color: white;
+}
+
+.shopBtn {
+  padding: 8px 35px;
+}
+
+.shopBtn-Large {
+  padding: 7px 75px;
+}
+
+.footer {
+  background-color: rgba(228, 222, 220, 0.511);
+}
+
+.group:hover .group-hover\:block {
+  display: block;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.mobile-menu {
+  transform: translateX(100%);
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.transition-transform {
+  transition: transform 0.3s ease-in-out;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.zindex-100 {
+  z-index: 100;
+}
+
+.gap10 {
+  gap: 10;
+}
+
+#leaves-img {
+  transform: scaleX(-1);
+}
+
+.zindex-minus {
+  z-index: -10;
+
+}

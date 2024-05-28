@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+
+</head>
+
+<body>
+    <div id="product-details"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const products = [
+                {
+                    id: 1,
+                    imageUrl: 'https://nominalx.com/cdn/shop/files/WR-VERILY-G_900x.png?v=1715914607',
+                    altText: 'Product 1',
+                    price: '299 dkk',
+                    text: 'tekst',
+                    specialtyText: '',
+                    category: 'ring',
+                    name: 'Guldring'
+                },
+                {
+                    id: 2,
+                    imageUrl: 'https://nominalx.com/cdn/shop/files/CustomNameSarah_900x.jpg?v=1710288477',
+                    altText: 'Product 2',
+                    price: '299 dkk',
+                    text: 'tekst',
+                    specialtyText: 'TEKST',
+                    category: 'necklaces',
+                    name: 'Sølvhalskæde'
+                },
+                {
+                    id: 3,
+                    imageUrl: 'https://nominalx.com/cdn/shop/products/AyatulKursiCuff_900x.jpg?v=1651015366',
+                    altText: 'Product 3',
+                    price: '299 dkk',
+                    text: 'tekst',
+                    specialtyText: 'TEKST',
+                    category: 'earrings',
+                    name: 'Diamantøreringe'
+                },
+                {
+                    id: 4,
+                    imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+                    altText: 'Product 4',
+                    price: '299 dkk',
+                    text: 'tekst',
+                    specialtyText: 'TEKST',
+                    category: 'bracelets',
+                    name: 'Læderarmbånd'
+                }
+                ,
+                {
+                    id: 5,
+                    imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+                    altText: 'Product 4',
+                    price: '299 dkk',
+                    text: 'tekst',
+                    specialtyText: 'TEKST',
+                    category: 'bracelets',
+                    name: 'Læderarmbånd'
+                }
+                ,
+                {
+                    id: 6,
+                    imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+                    altText: 'Product 4',
+                    price: '299 dkk',
+                    text: 'tekst',
+                    specialtyText: 'TEKST',
+                    category: 'bracelets',
+                    name: 'Læderarmbånd'
+                },
+                {
+                    id: 7,
+                    imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+                    altText: 'Product 4',
+                    price: '299 dkk',
+                    text: 'tekst',
+                    specialtyText: 'TEKST',
+                    category: 'bracelets',
+                    name: 'Læderarmbånd'
+                },
+                {
+                    id: 8,
+                    imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+                    altText: 'Product 4',
+                    price: '299 dkk',
+                    text: 'tekst',
+                    specialtyText: 'TEKST',
+                    category: 'bracelets',
+                    name: 'Læderarmbånd'
+                },
+                {
+                    id: 9,
+                    imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+                    altText: 'Product 4',
+                    price: '299 dkk',
+                    text: 'tekst',
+                    specialtyText: 'TEKST',
+                    category: 'bracelets',
+                    name: 'Læderarmbånd'
+                }
+                ,
+                {
+                    id: 10,
+                    imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+                    altText: 'Product 4',
+                    price: '299 dkk',
+                    text: 'tekst',
+                    specialtyText: 'TEKST',
+                    category: 'bracelets',
+                    name: 'Læderarmbånd'
+                }
+            ];
+
+            function getProductDetails(productId) {
+                return products.find(product => product.id == productId);
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const product = getProductDetails(productId);
+
+            if (product) {
+                const productDetails = document.getElementById('product-details');
+                productDetails.innerHTML = `
+                    <h1>${product.name}</h1>
+                    <img src="${product.imageUrl}" alt="${product.altText}">
+                    <p>Price: ${product.price}</p>
+                    <p>${product.text}</p>
+                    <p>Category: ${product.category}</p>
+                    <p>${product.specialtyText}</p>
+                `;
+            } else {
+                document.getElementById('product-details').innerText = 'Product not found';
+            }
+        });
+    </script>
+</body>
+
+</html>
