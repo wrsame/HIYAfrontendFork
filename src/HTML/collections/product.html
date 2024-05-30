@@ -3,15 +3,159 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details</title>
-
+    <title>HIYA</title>
+    <link href="/src/output.css" rel="stylesheet">
+    <link href="/src/css/global.css" rel="stylesheet">
+    <link href="/src/css/animations.css" rel="stylesheet">
+    <link href="/src/css/test.css" rel="stylesheet">
+    <script defer src="/src/JS/global2.js"></script>
+    <script defer src="/src/JS/collections.js"></script>
+    <script src="https://kit.fontawesome.com/d17e4552c5.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- SWIPER -->
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 
-<body>
-    <div id="product-details"></div>
+<body class="font-serif relative">
+    <div>
+        <div class="topBar bg-black w-full h-8 text-sm text-center flex items-center justify-center z-100 font-sans">
+            <span class="lg:w-3/12" id="sliderText"></span>
+        </div>
+
+        <div class="relative h-max w-full inset-0 p-6 lg:px-32 zindex-100 2xl:px-80 border-b border-gray-200">
+            <div id="navbar-container"></div>
+        </div>
+    </div>
+
+    <div class=" md:p-5 flex flex-col md:flex-row h-full">
+        <!-- billeder DESKTOP -->
+        <div class="hidden md:flex flex-grow-0 md:flex-grow md:basis-3/5 h-full">
+            <div class="imagesBox w-full flex flex-wrap">
+            </div>
+        </div>
+
+        <!-- Billeder MOBILE -->
+        <div class="w-full relative md:hidden">
+            <div class="swiper default-carousel swiper-container">
+                <div class="swiper-wrapper flex">
+
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+        <!-- produkt detailjer -->
+        <div class="p-5 md:p-0 detailsBox flex-grow-0 md:flex-grow md:basis-2/5  h-full">
+            <div class="max-w-md mx-auto p-5">
+                <h1 class="productName text-3xl font-semibold mb-4"></h1>
+                <p class="priceTag text-2xl pb-4 mb-8 border-b border-gray-300"></p>
+
+                <p class="chosenMaterial text-gray-500 mb-2"></p>
+                <div class="flex items-center mb-6">
+                    <!-- Materiale Billeder -->
+                    <div class="materialsBox flex space-x-2 my-3">
+                        <img src="https://img.freepik.com/free-vector/gradient-solid-gold-background_23-2150993766.jpg?size=626&ext=jpg&ga=GA1.1.44546679.1716854400&semt=sph"
+                            alt="Materiale 1"
+                            class="rounded-sm w-8 h-8 border border-gray-300 cursor-pointer material-box" name="gold">
+                        <img src="https://as1.ftcdn.net/v2/jpg/02/07/13/36/1000_F_207133679_tGuezrUoWSoJtNfxXaaK4jSrXpZHNqr6.jpg"
+                            alt="Materiale 2"
+                            class="rounded-sm w-8 h-8 border border-gray-300 cursor-pointer material-box" name="silver">
+                    </div>
+                </div>
+                <!-- Antal og Købsknap -->
+                <div class="flex items-center justify-center h-12 gap-2 my-10">
+
+                    <div class="h-full border border-black flex justify-center items-center rounded-sm">
+                        <button class="px-3 text-lg font-semibold decrement-btn h-full"
+                            style="outline: none;">-</button>
+                        <input type="text" value="1"
+                            class="productQuantity w-12 text-center border-l border-r border-black quantity-input h-full">
+                        <button class="px-3  text-lg font-semibold increment-btn h-full"
+                            style="outline: none;">+</button>
+                    </div>
+
+                    <button class="buybutton flex-1 h-full p-auto text-white text-lg font-semibold primary-bgColor">
+                        Læg i indkøbskurv</button>
+                </div>
+
+                <!-- INFO bokse -->
+                <div class="max-w-4xl mx-auto mt-8 ">
+                    <div
+                        class="light-blue-col text-gold-500 text-center py-3 text-white font-bold rounded-md mb-4 flex items-center justify-center">
+                        <img src="https://www.pngkey.com/png/full/643-6434328_lifetime-guarantee-icon-white-label.png"
+                            alt="Lifetime Warranty Icon " class="w-12 mr-2">
+                        <p class="text-base ">Livstidsgaranti på alle smykker</p>
+                    </div>
+                    <div class="flex items-center bg-gray-100 p-4 rounded-md mb-2 ">
+                        <img src="https://static.thenounproject.com/png/2526085-200.png" alt="Lifetime Warranty Icon "
+                            class="w-8 h-8 mx-4">
+                        <p class="text-base  ">Levering mellem 2-7 hverdage</p>
+                    </div>
+                    <div class="flex items-center bg-gray-100 p-4 rounded-md mb-2">
+                        <img src="https://icons.veryicon.com/png/o/miscellaneous/energy-system-icon/return-57.png"
+                            alt="Donate to Charity Icon" class="w-8 h-8 mx-4">
+                        <p class="text-base ">30 dages returret</p>
+                    </div>
+                    <div class="flex items-center bg-gray-100 p-4 rounded-md mb-2">
+                        <img src="https://cdn-icons-png.flaticon.com/512/628/628576.png" alt="Free Returns Icon"
+                            class="w-8 h-8 mx-4">
+                        <p class="text-base">Fri fragt i hele Danmark</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="description mt-10  border-t border-gray-300 relative">
+        <img src="/src/images/blade-lang.png" class="w-full absolute -bottom-3 opacity-30 z-0" alt="">
+        <div class="p-14 px-32">
+            <h1 class="text-3xl my-5">Beskrivelse</h1>
+            <p>gpt Vores armbånd er fuldt justerbare og de er one size fits all. De kan strækkes ud og klemmes ind for
+                at
+                passe
+                til enhver størrelse uden folder eller bøjninger. <br><br>
+                Betegnet som det mest magtfulde vers i Koranen, er Ayatul Kursi kendt for at give beskyttelse og
+                sikkerhed.
+                At bringe dette smukke og sentimentale vers til vores smykker har vist sig at være en favorit hos Hiya.
+                Vi er stolte af nu at introducere det i vores armbåndskollektion. Indgraveret helt på forsiden og
+                fortsætter
+                på bagsiden for at tilbyde en smukt indviklet æstetik, er dette armbånd blevet en af vores mest
+                detaljerede
+                designs nogensinde. <br><br>
+
+            <h2 class="text-xl my-5">Materialer & Garanti</h2>
+            <ul>
+                <li>Størrelse: 6 Inches | 15,25 CM (Gennemsnitlig håndledsstørrelse) - Justerbar til enhver størrelse
+                </li>
+                <li>Højde: 5mm</li>
+                <li>Tykkelse: 1,5mm</li>
+                <li>Materiale: Ægte 18K guld belægning på ren rustfrit stål</li>
+                <li>Hypoallergenisk | Venlig for følsom hud</li>
+                <li>Livstidsgaranti mod al rust eller misfarvning</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer id="footer" class=" relative footer flex flex-col justify-between z-10 "></footer>
+    </footer>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+
+
+            // showImages(['https://nominalx.com/cdn/shop/files/WR-VERILY-G_900x.png?v=1715914607',
+            //     'https://nominalx.com/cdn/shop/files/WR-VERILY-G_900x.png?v=1715914607', 'https://nominalx.com/cdn/shop/files/WR-VERILY-G_900x.png?v=1715914607'])
+
+            let imgs = ['https://nominalx.com/cdn/shop/files/WR-VERILY-G_900x.png?v=1715914607',
+                'https://nominalx.com/cdn/shop/files/WR-VERILY-G_900x.png?v=1715914607', 'https://nominalx.com/cdn/shop/files/WR-VERILY-G_900x.png?v=1715914607']
+
+            showImages(imgs)
+            imgSliderOnMobile(imgs)
+
+
             const products = [
                 {
                     id: 1,
@@ -126,21 +270,178 @@
             const productId = urlParams.get('id');
             const product = getProductDetails(productId);
 
+            const buyButton = document.querySelector(".buybutton")
+            const productQuantity = document.querySelector(".productQuantity")
+
+            buyButton.addEventListener("click", function () {
+                const quantity = parseInt(productQuantity.value);
+
+                if (quantity > 0) {
+
+                    let cart = JSON.parse(localStorage.getItem('HIYAcart')) || [];
+
+
+                    const existingProduct = cart.find(item => item.id === product.id);
+
+                    if (existingProduct) {
+
+                        existingProduct.quantity += quantity;
+                    } else {
+
+                        cart.push({ id: product.id, quantity: quantity });
+                    }
+                    localStorage.setItem('HIYAcart', JSON.stringify(cart));
+                    buyButton.style.outline = "none"
+                    buyButton.innerText = "Tilføjet";
+                    buyButton.classList.add("primary-light-col");
+
+                    // Reset button text and color after 1 second
+                    setTimeout(() => {
+                        buyButton.innerText = "Køb";
+                        buyButton.classList.remove("primary-light-col");
+                    }, 1000);
+
+                } else {
+                    alert("Fejl, prøv igen");
+                }
+            });
+
             if (product) {
-                const productDetails = document.getElementById('product-details');
-                productDetails.innerHTML = `
-                    <h1>${product.name}</h1>
-                    <img src="${product.imageUrl}" alt="${product.altText}">
-                    <p>Price: ${product.price}</p>
-                    <p>${product.text}</p>
-                    <p>Category: ${product.category}</p>
-                    <p>${product.specialtyText}</p>
-                `;
-            } else {
-                document.getElementById('product-details').innerText = 'Product not found';
+                fillProductDetails(product)
             }
         });
+
+        function showImages(urls) {
+            const imgBox = document.querySelector(".imagesBox")
+
+            urls.forEach(url => {
+                const div = document.createElement('div');
+                div.className = 'w-1/2 p-1';
+
+                const img = document.createElement('img');
+                img.src = url;
+                img.className = 'w-full h-full object-cover';
+
+                div.appendChild(img);
+                imgBox.appendChild(div);
+            });
+        }
+
+        function imgSliderOnMobile(urls) {
+
+            const swiperWrapper = document.querySelector(".swiper-wrapper")
+            urls.forEach(url => {
+
+                const swiperslide = document.createElement('div');
+                swiperslide.className = "swiper-slide flex"
+
+                const div = document.createElement('div');
+                div.className = 'flex justify-center items-center';
+
+                const img = document.createElement('img');
+                img.src = url;
+                img.className = 'w-full h-6/12 object-cover';
+
+
+                div.appendChild(img);
+                swiperslide.appendChild(div)
+                swiperWrapper.appendChild(swiperslide);
+            });
+
+        }
+
+        function fillProductDetails(product) {
+
+            const productName = document.querySelector('.productName')
+            const priceTag = document.querySelector('.priceTag')
+            const chosenMaterial = document.querySelector('.chosenMaterial')
+
+            chosenMaterial.innerText = "Vælg Materiale: " + product.material
+            priceTag.innerText = product.price
+            productName.innerText = product.name
+
+        }
+
+        function fillMaterials(products) {
+            const materialsBox = document.querySelector('.materialsBox');
+            let src = "";
+
+            products.forEach(product => {
+
+                if (product.material === "gold") {
+                    src = "https://img.freepik.com/free-vector/gradient-solid-gold-background_23-2150993766.jpg?size=626&ext=jpg&ga=GA1.1.44546679.1716854400&semt=sph";
+                } else {
+                    src = "path-to-silver"; // Replace with the actual path to the silver image
+                }
+
+                const a = document.createElement('a');
+                a.href = `#${product.id}`; // Reload the page with the new ID in the hash
+
+                const img = document.createElement('img');
+                img.src = src;
+                img.className = 'w-12 h-12 border border-gray-300 cursor-pointer material-box';
+
+                // Append the image to the anchor
+                a.appendChild(img);
+
+                // Append the anchor to the materials box
+                materialsBox.appendChild(a);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const decrementButton = document.querySelector('.decrement-btn');
+            const incrementButton = document.querySelector('.increment-btn');
+            const quantityInput = document.querySelector('.quantity-input');
+
+            decrementButton.addEventListener('click', function () {
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                }
+            });
+
+            incrementButton.addEventListener('click', function () {
+                let currentValue = parseInt(quantityInput.value);
+                quantityInput.value = currentValue + 1;
+            });
+
+            const materialBtns = document.querySelectorAll('.material-box');
+
+            materialBtns.forEach(material => {
+                material.addEventListener('click', () => {
+                    selectMaterial(material);
+                });
+            });
+
+            function selectMaterial(element) {
+                // Fjern 'selected' klassen fra alle billeder
+                materialBtns.forEach(material => {
+                    material.classList.remove('border-black');
+                    material.classList.add('border-gray-300');
+                });
+
+                // Tilføj 'selected' klassen til det klikkede billede
+                element.classList.remove('border-gray-300');
+                element.classList.add('border-black');
+            }
+        });
+
+        // følgende kode SKAL BLIVE HER ---------
+
+        var swiper = new Swiper(".default-carousel", {
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
     </script>
+
 </body>
 
 </html>

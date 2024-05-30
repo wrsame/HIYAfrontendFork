@@ -1,0 +1,478 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIYA</title>
+    <link href="/src/output.css" rel="stylesheet">
+    <link href="/src/css/global.css" rel="stylesheet">
+    <link href="/src/css/animations.css" rel="stylesheet">
+    <link href="/src/css/test.css" rel="stylesheet">
+    <script defer src="/src/JS/global2.js"></script>
+    <script defer src="/src/JS/collections.js"></script>
+    <script src="https://kit.fontawesome.com/d17e4552c5.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-serif relative">
+
+    <div>
+        <div class="topBar bg-black w-full h-8 text-sm text-center flex items-center justify-center z-100 font-sans">
+            <span class="lg:w-3/12" id="sliderText"></span>
+        </div>
+
+        <div class="relative h-max w-full inset-0 p-6 lg:px-32 zindex-100 2xl:px-80 border-b border-gray-200">
+            <div id="navbar-container"></div>
+        </div>
+    </div>
+
+    <div class="md:py-16 mb-20">
+
+
+        <div class="max-w-6xl md:mx-10 lg:mx-auto p-5">
+            <!-- Header -->
+            <div class="flex gap-2 flex-col lg:flex-row md:justify-between lg:items-center mb-20">
+                <h1 class="text-4xl md:text-5xl font-semibold">Din indkøbskurv</h1>
+                <a href="/src/HTML/collections/main.html" class="text-gray-500 underline">Tilbage til butikken</a>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-10 lg:gap-20 ">
+                <div>
+                    <!-- Table Header -->
+                    <div class="grid grid-cols-3 gap-4 border-b border-gray-200 pb-2 text-gray-500 text-sm mb-4">
+                        <div>PRODUKT</div>
+                        <div class="text-center">ANTAL</div>
+                        <div class="text-right">I ALT</div>
+                    </div>
+
+
+                    <div id="basket-container" class="product-rows-container">
+
+                    </div>
+                </div>
+                <div class="w-full lg:w-64 py-5">
+                    <div class="h-full flex flex-col gap-10">
+                        <div class="flex justify-between ">
+                            <p class="text-lg font-semibold">Subtotal</p>
+                            <p class="text-lg font-semibold">2.198,00 DKK</p>
+                        </div>
+                        <div class="">
+                            <button class="w-full primary-bgColor text-white py-3 mb-2">Gå til betaling</button>
+                            <button class="w-full light-blue-col text-white py-3 mb-2">Opret ordre (TEST)</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer" class="footer flex flex-col justify-between "></footer>
+    </footer>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                imageUrl: 'https://nominalx.com/cdn/shop/files/WR-VERILY-G_900x.png?v=1715914607',
+                altText: 'Product 1',
+                price: 299,
+                text: 'tekst',
+                specialtyText: '',
+                category: 'ring',
+                name: 'Guldring'
+            },
+            {
+                id: 2,
+                imageUrl: 'https://nominalx.com/cdn/shop/files/CustomNameSarah_900x.jpg?v=1710288477',
+                altText: 'Product 2',
+                price: 299,
+                text: 'tekst',
+                specialtyText: 'TEKST',
+                category: 'necklaces',
+                name: 'Sølvhalskæde'
+            },
+            {
+                id: 3,
+                imageUrl: 'https://nominalx.com/cdn/shop/products/AyatulKursiCuff_900x.jpg?v=1651015366',
+                altText: 'Product 3',
+                price: 299,
+                text: 'tekst',
+                specialtyText: 'TEKST',
+                category: 'earrings',
+                name: 'Diamantøreringe'
+            },
+            {
+                id: 4,
+                imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+                altText: 'Product 4',
+                price: 299,
+                text: 'tekst',
+                specialtyText: 'TEKST',
+                category: 'bracelets',
+                name: 'Læderarmbånd'
+            }
+            ,
+            {
+                id: 5,
+                imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+                altText: 'Product 4',
+                price: 299,
+                text: 'tekst',
+                specialtyText: 'TEKST',
+                category: 'bracelets',
+                name: 'Læderarmbånd'
+            }
+            ,
+            {
+                id: 6,
+                imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+                altText: 'Product 4',
+                price: 299,
+                text: 'tekst',
+                specialtyText: 'TEKST',
+                category: 'bracelets',
+                name: 'Læderarmbånd'
+            },
+            {
+                id: 7,
+                imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+                altText: 'Product 4',
+                price: 299,
+                text: 'tekst',
+                specialtyText: 'TEKST',
+                category: 'bracelets',
+                name: 'Læderarmbånd'
+            },
+            {
+                id: 8,
+                imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+                altText: 'Product 4',
+                price: 299,
+                text: 'tekst',
+                specialtyText: 'TEKST',
+                category: 'bracelets',
+                name: 'Læderarmbånd'
+            },
+            {
+                id: 9,
+                imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+                altText: 'Product 4',
+                price: 299,
+                text: 'tekst',
+                specialtyText: 'TEKST',
+                category: 'bracelets',
+                name: 'Læderarmbånd'
+            }
+            ,
+            {
+                id: 10,
+                imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+                altText: 'Product 4',
+                price: '299 dkk',
+                text: 'tekst',
+                specialtyText: 'TEKST',
+                category: 'bracelets',
+                name: 'Læderarmbånd'
+            }
+        ];
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const basketContainer = document.getElementById('basket-container');
+            const cart = JSON.parse(localStorage.getItem('HIYAcart')) || [];
+
+            if (cart.length === 0) {
+                basketContainer.innerHTML = "<p>Your basket is empty.</p>";
+            } else {
+                cart.forEach(item => {
+                    const product = products.find(p => p.id === item.id);
+
+                    if (product) {
+                        const productRow = document.createElement('div');
+                        productRow.className = 'grid grid-cols-1 md:grid-cols-3 gap-4 items-center border-b border-gray-200 py-4';
+                        productRow.dataset.productId = product.id;
+
+                        productRow.innerHTML = `
+                    <div class="flex items-center">
+                        <img src="${product.imageUrl}" alt="${product.altText}" class="w-16 h-16 object-cover mr-4">
+                        <div>
+                            <p class="text-lg font-semibold">${product.name}</p>
+                            <p class="text-gray-500">${product.price.toLocaleString('da-DK')} kr</p>
+                            <p class="text-gray-500 text-sm">Materiale: ${product.text}</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-center items-center">
+                        <button class="px-3 py-2 border border-gray-400 decrement-btn" style="outline: none;">-</button>
+                        <input type="text" value="${item.quantity}" class="w-12 text-center py-2 border-t border-b border-gray-400 quantity-input">
+                        <button class="px-3 py-2 border border-gray-400 increment-btn" style="outline: none;">+</button>
+                        <button class="ml-4 delete-btn"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-lg font-semibold total-price">${(product.price * item.quantity).toLocaleString('da-DK')} kr</p>
+                    </div>
+                `;
+
+                        basketContainer.appendChild(productRow);
+
+                        // Add event listeners for increment and decrement buttons
+                        const decrementButton = productRow.querySelector('.decrement-btn');
+                        const incrementButton = productRow.querySelector('.increment-btn');
+                        const quantityInput = productRow.querySelector('.quantity-input');
+                        const totalPriceElement = productRow.querySelector('.total-price');
+
+                        decrementButton.addEventListener('click', function () {
+                            let currentValue = parseInt(quantityInput.value);
+                            if (currentValue > 1) {
+                                quantityInput.value = currentValue - 1;
+                                updateTotalPrice(quantityInput, totalPriceElement, product.price);
+                            }
+                        });
+
+                        incrementButton.addEventListener('click', function () {
+                            let currentValue = parseInt(quantityInput.value);
+                            quantityInput.value = currentValue + 1;
+                            updateTotalPrice(quantityInput, totalPriceElement, product.price);
+                        });
+
+                        // Add event listener for delete button
+                        const deleteButton = productRow.querySelector('.delete-btn');
+                        deleteButton.addEventListener('click', function () {
+                            const productId = productRow.dataset.productId;
+                            removeProductFromCart(productId);
+                            productRow.remove();
+                        });
+                    }
+                });
+            }
+        });
+
+        // Update total price based on quantity
+        function updateTotalPrice(quantityInput, totalPriceElement, unitPrice) {
+            const quantity = parseInt(quantityInput.value);
+            const totalPrice = quantity * unitPrice;
+            totalPriceElement.textContent = `${totalPrice.toLocaleString('da-DK')} kr`;
+            const productId = quantityInput.closest('.grid').dataset.productId;
+            updateLocalStorage(productId, quantity);
+        }
+
+        // Update localStorage with the new quantity
+        function updateLocalStorage(productId, newQuantity) {
+            let cart = JSON.parse(localStorage.getItem('HIYAcart')) || [];
+            const product = cart.find(item => item.id == productId);
+            if (product) {
+                product.quantity = parseInt(newQuantity);
+                localStorage.setItem('HIYAcart', JSON.stringify(cart));
+            }
+        }
+
+        // Remove product from localStorage
+        function removeProductFromCart(productId) {
+            let cart = JSON.parse(localStorage.getItem('HIYAcart')) || [];
+            cart = cart.filter(item => item.id != productId);
+            localStorage.setItem('HIYAcart', JSON.stringify(cart));
+        }
+
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     const decrementButtons = document.querySelectorAll('.decrement-btn');
+        //     const incrementButtons = document.querySelectorAll('.increment-btn');
+        //     const quantityInputs = document.querySelectorAll('.quantity-input');
+        //     const deleteButtons = document.querySelectorAll('.delete-btn');
+        //     const unitPrice = 1099; // Unit price of the product
+
+        //     // Update total price based on quantity
+        //     function updateTotalPrice(quantityInput) {
+        //         const totalPriceElement = quantityInput.closest('.grid').querySelector('.total-price');
+        //         const productId = quantityInput.closest('.grid').dataset.productId;
+        //         const totalPrice = quantityInput.value * unitPrice;
+        //         totalPriceElement.textContent = `${totalPrice.toLocaleString('da-DK')} kr`;
+
+        //         // Update localStorage
+        //         updateLocalStorage(productId, quantityInput.value);
+        //     }
+
+        //     // Update localStorage with the new quantity
+        //     function updateLocalStorage(productId, newQuantity) {
+        //         let cart = JSON.parse(localStorage.getItem('HIYAcart')) || [];
+        //         const product = cart.find(item => item.id == productId);
+        //         if (product) {
+        //             product.quantity = parseInt(newQuantity);
+        //             localStorage.setItem('HIYAcart', JSON.stringify(cart));
+        //         }
+        //     }
+
+        //     decrementButtons.forEach(button => {
+        //         button.addEventListener('click', function () {
+        //             const quantityInput = this.nextElementSibling;
+        //             let currentValue = parseInt(quantityInput.value);
+        //             if (currentValue > 1) {
+        //                 quantityInput.value = currentValue - 1;
+        //                 updateTotalPrice(quantityInput);
+        //             }
+        //         });
+        //     });
+
+        //     incrementButtons.forEach(button => {
+        //         button.addEventListener('click', function () {
+        //             const quantityInput = this.previousElementSibling;
+        //             let currentValue = parseInt(quantityInput.value);
+        //             quantityInput.value = currentValue + 1;
+        //             updateTotalPrice(quantityInput);
+        //         });
+        //     });
+
+        //     deleteButtons.forEach(button => {
+        //         button.addEventListener('click', function () {
+        //             const productRow = this.closest('.grid');
+        //             const productId = productRow.dataset.productId;
+
+        //             // Remove the product from localStorage
+        //             let cart = JSON.parse(localStorage.getItem('HIYAcart')) || [];
+        //             cart = cart.filter(item => item.id != productId);
+        //             localStorage.setItem('HIYAcart', JSON.stringify(cart));
+
+        //             // Remove the product row from the DOM
+        //             productRow.remove();
+        //         });
+        //     });
+
+        //     // Initialize total prices
+        //     quantityInputs.forEach(input => {
+        //         updateTotalPrice(input);
+        //     });
+        // });
+
+        // const products = [
+        //     {
+        //         id: 1,
+        //         imageUrl: 'https://nominalx.com/cdn/shop/files/WR-VERILY-G_900x.png?v=1715914607',
+        //         altText: 'Product 1',
+        //         price: '299 dkk',
+        //         text: 'tekst',
+        //         specialtyText: '',
+        //         category: 'ring',
+        //         name: 'Guldring'
+        //     },
+        //     {
+        //         id: 2,
+        //         imageUrl: 'https://nominalx.com/cdn/shop/files/CustomNameSarah_900x.jpg?v=1710288477',
+        //         altText: 'Product 2',
+        //         price: '299 dkk',
+        //         text: 'tekst',
+        //         specialtyText: 'TEKST',
+        //         category: 'necklaces',
+        //         name: 'Sølvhalskæde'
+        //     },
+        //     {
+        //         id: 3,
+        //         imageUrl: 'https://nominalx.com/cdn/shop/products/AyatulKursiCuff_900x.jpg?v=1651015366',
+        //         altText: 'Product 3',
+        //         price: '299 dkk',
+        //         text: 'tekst',
+        //         specialtyText: 'TEKST',
+        //         category: 'earrings',
+        //         name: 'Diamantøreringe'
+        //     },
+        //     {
+        //         id: 4,
+        //         imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+        //         altText: 'Product 4',
+        //         price: '299 dkk',
+        //         text: 'tekst',
+        //         specialtyText: 'TEKST',
+        //         category: 'bracelets',
+        //         name: 'Læderarmbånd'
+        //     }
+        //     ,
+        //     {
+        //         id: 5,
+        //         imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+        //         altText: 'Product 4',
+        //         price: '299 dkk',
+        //         text: 'tekst',
+        //         specialtyText: 'TEKST',
+        //         category: 'bracelets',
+        //         name: 'Læderarmbånd'
+        //     }
+        //     ,
+        //     {
+        //         id: 6,
+        //         imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+        //         altText: 'Product 4',
+        //         price: '299 dkk',
+        //         text: 'tekst',
+        //         specialtyText: 'TEKST',
+        //         category: 'bracelets',
+        //         name: 'Læderarmbånd'
+        //     },
+        //     {
+        //         id: 7,
+        //         imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+        //         altText: 'Product 4',
+        //         price: '299 dkk',
+        //         text: 'tekst',
+        //         specialtyText: 'TEKST',
+        //         category: 'bracelets',
+        //         name: 'Læderarmbånd'
+        //     },
+        //     {
+        //         id: 8,
+        //         imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+        //         altText: 'Product 4',
+        //         price: '299 dkk',
+        //         text: 'tekst',
+        //         specialtyText: 'TEKST',
+        //         category: 'bracelets',
+        //         name: 'Læderarmbånd'
+        //     },
+        //     {
+        //         id: 9,
+        //         imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+        //         altText: 'Product 4',
+        //         price: '299 dkk',
+        //         text: 'tekst',
+        //         specialtyText: 'TEKST',
+        //         category: 'bracelets',
+        //         name: 'Læderarmbånd'
+        //     }
+        //     ,
+        //     {
+        //         id: 10,
+        //         imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
+        //         altText: 'Product 4',
+        //         price: '299 dkk',
+        //         text: 'tekst',
+        //         specialtyText: 'TEKST',
+        //         category: 'bracelets',
+        //         name: 'Læderarmbånd'
+        //     }
+        // ];
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     const basketContainer = document.getElementById('basket-container');
+        //     const cart = JSON.parse(localStorage.getItem('HIYAcart')) || [];
+
+        //     if (cart.length === 0) {
+        //         basketContainer.innerHTML = "<p>Your basket is empty.</p>";
+        //     } else {
+        //         cart.forEach(item => {
+
+        //             const product = products.find(p => p.id === item.id);
+
+        //             if (product) {
+        //                 const productDiv = document.createElement('div');
+        //                 productDiv.innerHTML = `
+        //                     <h2>${product.name}</h2>
+        //                     <img src="${product.imageUrl}" alt="${product.altText}" style="width:100px;">
+        //                     <p>Price: ${product.price}</p>
+        //                     <p>Quantity: ${item.quantity}</p>
+        //                 `;
+        //                 basketContainer.appendChild(productDiv);
+        //             }
+        //         });
+        //     }
+        // });
+    </script>
+</body>
+
+</html>

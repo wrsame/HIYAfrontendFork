@@ -135,3 +135,7 @@ button:hover {
   z-index: -10;
 
 }
+
+.swiper-pagination-bullet {
+  background: #4f46e5;
+}

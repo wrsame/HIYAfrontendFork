@@ -22,7 +22,7 @@
           ],
         },
         {
-          name: "Om HIYA",
+          name: "Om Hiya",
           href: "/src/html/aboutUs.html",
         },
         {
@@ -79,7 +79,11 @@
           <nav class="">
             <div class="container flex flex-row justify-between items-center">
               <div class="flex items-center">
-                <a href="/src/html/index2.html" class="text-black font-bold text-2xl">HIYA</a>
+                <a href="/src/html/index2.html" class="text-black font-bold text-2xl">
+                <img src="/src/images/FullLogo.png"
+                            alt="logo"
+                            class="w-24 md:w-32">
+                            </a>
               </div>
               <div class="hidden md:flex items-center">
                 ${desktopMenu}
