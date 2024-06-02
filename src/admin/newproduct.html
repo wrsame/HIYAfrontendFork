@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRODUCT</title>
+    <link href="../output.css" rel="stylesheet">
+    <link href="/src/css/global.css" rel="stylesheet">
+    <script type="module" defer src="newproduct.js"></script>
+
+</head>
+
+<body class="p-10 flex flex-col items-center primary-bgColor">
+
+    <form id="productForm" class="bg-white p-8 rounded-lg shadow-md w-full max-w-lg" enctype="multipart/form-data">
+        <h1 class="text-2xl"> Opret nyt produkt</h1>
+        <div class="mb-4">
+            <label for="productNameSelect" class="block text-gray-700 text-sm font-bold mb-2">Produkt serie:</label>
+            <div class="flex">
+                <select id="productNameSelect" name="productNameSelect"
+                    class="flex-grow border border-gray-300 rounded-md p-2 mr-2"></select>
+                <button type="button" id="createNewProductBtn"
+                    class="light-blue-col text-white rounded-md px-4 py-2">Opret
+                    ny</button>
+            </div>
+        </div>
+        <div class="mb-4" id="newProductNameSection" style="display:none;">
+            <input type="text" id="productName" name="productName" placeholder="Indtast nyt produktnavn"
+                class="border border-gray-300 rounded-md p-2 w-full mb-2">
+            <span id="cancelNewProduct" class="text-red-500 cursor-pointer">X</span>
+        </div>
+        <div class="mb-4">
+            <label for="material" class="block text-gray-700 text-sm font-bold mb-2">Materiale:</label>
+            <select id="material" name="material" class="border border-gray-300 rounded-md p-2 w-full"></select>
+        </div>
+        <div class="mb-4">
+            <label for="price" class="block text-gray-700 text-sm font-bold mb-2">Pris:</label>
+            <input type="number" step="0.01" id="price" name="price"
+                class="border border-gray-300 rounded-md p-2 w-full">
+        </div>
+        <div class="mb-4">
+            <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Beskrivelse:</label>
+            <textarea id="description" name="description" required
+                class="border border-gray-300 rounded-md p-2 w-full"></textarea>
+        </div>
+        <div class="mb-4">
+            <label for="primaryImage" class="block text-gray-700 text-sm font-bold mb-2">Primær billede:</label>
+            <input type="file" id="primaryImage" name="primaryImage" required
+                class="border border-gray-300 rounded-md p-2 w-full">
+        </div>
+        <div class="mb-4">
+            <label for="images" class="block text-gray-700 text-sm font-bold mb-2">Upload billeder:</label>
+            <input type="file" id="images" name="images" multiple class="border border-gray-300 rounded-md p-2 w-full">
+        </div>
+        <div class="mb-4">
+            <label for="collection" class="block text-gray-700 text-sm font-bold mb-2">Kollektion:</label>
+            <select id="collection" name="collection" class="border border-gray-300 rounded-md p-2 w-full"
+                multiple></select>
+        </div>
+        <div class="mb-4">
+            <label for="quantity" class="block text-gray-700 text-sm font-bold mb-2">Lagerbeholdning:</label>
+            <input type="number" id="quantity" name="quantity" class="border border-gray-300 rounded-md p-2 w-full">
+        </div>
+        <div class="text-right">
+            <button type="submit" class="primary-bgColor text-white rounded-md px-4 py-2">Opret produkt</button>
+        </div>
+    </form>
+
+</body>
+
+</html>

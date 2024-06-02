@@ -7,6 +7,10 @@ html {
   /* For Firefox */
 }
 
+body {
+  background-color: #fffdfb;
+}
+
 html::-webkit-scrollbar {
   display: none;
   /* For Chrome, Safari, og Opera */

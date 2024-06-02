@@ -1,15 +1,14 @@
 // -----------------------NAVIGATION BUILDER-------------------------------
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const menuItems = [
+  import { getCollections } from "../api/data/getData.js"
+
+    document.addEventListener("DOMContentLoaded", async function () {
+      const menuItems = [ 
         {
           name: "Smykker",
           href: "",
           dropdown: [
             { name: "Alle smykker", href: "/src/html/collections/main.html#all" },
-            { name: "Øreringe", href: "/src/html/collections/main.html#earrings" },
-            { name: "Halskæder", href: "/src/html/collections/main.html#necklaces" },
-            { name: "Armbånd", href: "/src/html/collections/main.html#bracelets" },
           ],
         },
         {
@@ -31,6 +30,17 @@
         },
       ];
 
+      try {
+        const collections = await getCollections();
+        collections.forEach(collection => {
+          menuItems[0].dropdown.push({ name: collection.name, href: `/src/html/collections/main.html#${collection.name}`});
+        });
+       
+      } catch (error) {
+        console.error('Error fetching collections:', error);
+      }
+    
+
       function buildNavbar(menuItems) {
         let desktopMenu = "";
         let mobileMenu = "";
@@ -42,7 +52,7 @@
                   <button class="text-black px-4" style="outline: none;">${
                     item.name
                   } <i class="fa-solid fa-chevron-down fa-xs mx-1" style="color: #9c9c9c;"></i></button>
-                  <div class="absolute left-0 hidden mt-0 w-48 bg-white shadow-lg dropdown-menu">
+                  <div class="absolute left-0 hidden mt-0 w-56 p-5 bg-white shadow-lg dropdown-menu">
                     ${item.dropdown
                       .map(
                         (subItem) =>
@@ -72,9 +82,18 @@
           }
         });
 
-        // Adding the cart icon in the desktop and mobile menus
-        const cartIcon = '<a href="/src/html/basket.html" class="outline-none"><img src="/src/images/shoppingBag.png" alt="cart" class="cart-icon w-10" style=" cursor: pointer;"></img></a>';
+        let t = updateCartQuantityBadge()  
 
+        // Adding the cart icon in the desktop and mobile menus
+        const cartIcon = `
+        <div class="relative inline-block"> 
+        <a href="/src/html/cart.html" class="outline-none">
+            <img src="/src/images/shoppingBag.png" alt="cart" class="w-10 h-10">
+            <div id="cart-quantity-badge" class="absolute bottom-0 light-blue-col right-0 blue text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+            ${t}
+            </div>
+        </a>
+    </div>`
         return `
           <nav class="">
             <div class="container flex flex-row justify-between items-center">
@@ -144,8 +163,17 @@
           this.querySelector("i").classList.toggle("rotate");
         });
       });
+      
     });
 
+    function updateCartQuantityBadge(){
+     
+  
+      const cart = JSON.parse(localStorage.getItem('HIYAcart')) || [];
+  
+      const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+      return totalQuantity
+      }
 //---------------------------- ANIMATIONS -----------------------------------
 
 //-----TOP BAR SLIDE------

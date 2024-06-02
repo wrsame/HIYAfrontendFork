@@ -1,136 +1,45 @@
-document.addEventListener("DOMContentLoaded", function () {
+import { getProducts, getCollections } from "../api/data/getData.js"
+import {baseUrl} from "../api/requests.js"
 
+document.addEventListener("DOMContentLoaded", async function () {
+
+    const products = await getProducts()
+    const validCollections = await getCollections()
+    const validCollectionNames = validCollections.map(x => {return x.name})
+    
     setDropDown();
 
     const productList = document.getElementById("product-list");
     const collectionTitle = document.getElementById("collection-title");
 
-    const products = [
-        {
-            id: 1,
-            imageUrl: 'https://nominalx.com/cdn/shop/files/WR-VERILY-G_900x.png?v=1715914607',
-            altText: 'Product 1',
-            price: '299 dkk',
-            text: 'tekst',
-            specialtyText: '',
-            category: 'ring',
-            name: 'Guldring'
-        },
-        {
-            id: 2,
-            imageUrl: 'https://nominalx.com/cdn/shop/files/CustomNameSarah_900x.jpg?v=1710288477',
-            altText: 'Product 2',
-            price: '299 dkk',
-            text: 'tekst',
-            specialtyText: 'TEKST',
-            category: 'necklaces',
-            name: 'Sølvhalskæde'
-        },
-        {
-            id: 3,
-            imageUrl: 'https://nominalx.com/cdn/shop/products/AyatulKursiCuff_900x.jpg?v=1651015366',
-            altText: 'Product 3',
-            price: '299 dkk',
-            text: 'tekst',
-            specialtyText: 'TEKST',
-            category: 'earrings',
-            name: 'Diamantøreringe'
-        },
-        {
-            id: 4,
-            imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
-            altText: 'Product 4',
-            price: '299 dkk',
-            text: 'tekst',
-            specialtyText: 'TEKST',
-            category: 'bracelets',
-            name: 'Læderarmbånd'
-        }
-        ,
-        {
-            id: 5,
-            imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
-            altText: 'Product 4',
-            price: '299 dkk',
-            text: 'tekst',
-            specialtyText: 'TEKST',
-            category: 'bracelets',
-            name: 'Læderarmbånd'
-        }
-        ,
-        {
-            id: 6,
-            imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
-            altText: 'Product 4',
-            price: '299 dkk',
-            text: 'tekst',
-            specialtyText: 'TEKST',
-            category: 'bracelets',
-            name: 'Læderarmbånd'
-        },
-        {
-            id: 7,
-            imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
-            altText: 'Product 4',
-            price: '299 dkk',
-            text: 'tekst',
-            specialtyText: 'TEKST',
-            category: 'bracelets',
-            name: 'Læderarmbånd'
-        },
-        {
-            id: 8,
-            imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
-            altText: 'Product 4',
-            price: '299 dkk',
-            text: 'tekst',
-            specialtyText: 'TEKST',
-            category: 'bracelets',
-            name: 'Læderarmbånd'
-        },
-        {
-            id: 9,
-            imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
-            altText: 'Product 4',
-            price: '299 dkk',
-            text: 'tekst',
-            specialtyText: 'TEKST',
-            category: 'bracelets',
-            name: 'Læderarmbånd'
-        }
-        ,
-        {
-            id: 10,
-            imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
-            altText: 'Product 4',
-            price: '299 dkk',
-            text: 'tekst',
-            specialtyText: 'TEKST',
-            category: 'bracelets',
-            name: 'Læderarmbånd'
-        }
-    ];
-
     function updateProductList(category) {
         setCoverImg(category);
-        const selectedProducts = category === 'all' ? products : products.filter(product => product.category === category);
-
+        const selectedProducts = category === 'all' 
+            ? products 
+            : products.filter(product => product.collections.some(collection => collection.name === category));
+        
         productList.innerHTML = "";
 
         selectedProducts.forEach(product => {
             const productWrapper = document.createElement('div');
-            productWrapper.className = 'productWrapper w-max h-auto my-3 mx-2';
+            productWrapper.className = 'productWrapper w-min h-auto my-3 mx-2';
 
             const productImageWrapper = document.createElement('div');
             productImageWrapper.className = 'w-40 h-44 lg:w-56 lg:h-60 border-2 relative';
 
             const productSpecialty = document.createElement('div');
             productSpecialty.className = 'productSpecialty absolute inset-2 text-sm';
-            productSpecialty.innerText = product.specialtyText;
+            productSpecialty.innerText = product.description;
 
+        
             const productImage = document.createElement('img');
             productImage.className = 'object-cover w-full h-full';
-            productImage.src = product.imageUrl;
+            const primaryImage = product.images.find(image => image.is_primary);
+            if (primaryImage) {
+                productImage.src = `${baseUrl}${primaryImage.imageURL}`;
+            } else {
+            productImage.src = `${baseUrl}${product.images[0].imageURL}`;
+            }
             productImage.alt = product.altText;
 
             const buyButton = document.createElement('button');
@@ -151,16 +60,16 @@ document.addEventListener("DOMContentLoaded", function () {
             const productInfoWrapper = document.createElement('div');
             productInfoWrapper.className = 'w-full p-1 flex justify-between';
 
+            const productText = document.createElement('p');
+            productText.className = 'text-sm w-2/4 break-words';
+            productText.innerText = product.product_series.name;
+            
             const productPrice = document.createElement('p');
             productPrice.className = 'text-sm';
-            productPrice.innerText = product.price;
+            productPrice.innerText = product.price + " dkk";
 
-            const productText = document.createElement('p');
-            productText.className = 'text-sm';
-            productText.innerText = product.name;
-
-            productInfoWrapper.appendChild(productPrice);
             productInfoWrapper.appendChild(productText);
+            productInfoWrapper.appendChild(productPrice);
 
             productWrapper.appendChild(productImageWrapper);
             productWrapper.appendChild(productInfoWrapper);
@@ -168,42 +77,46 @@ document.addEventListener("DOMContentLoaded", function () {
             productList.appendChild(productWrapper);
         });
 
+    }
+
+
+    function checkHash() {
+        const hash = decodeURIComponent(window.location.hash.substring(1));
+        let category = validCollectionNames.includes(hash) ? hash : "all";
+        
+        updateProductList(category);
         collectionTitle.textContent = category === "all" ? "Alle Smykker" : category.charAt(0).toUpperCase() + category.slice(1);
     }
 
-    // Check URL hash to determine category
-    function checkHash() {
-        const hash = window.location.hash.substring(1);
-        const category = hash ? hash : "all";
-        updateProductList(category);
-    }
-
     window.addEventListener("hashchange", checkHash);
-    checkHash(); // Initial call to set the products
+    checkHash(); // Initial call 
 });
 
 
-
-
 function setCoverImg(category) {
-    console.log(category);
+
     const img = document.querySelector('#coverImg');
+    img.classList.remove('filter', 'grayscale');
     switch (category) {
-        case 'earrings':
-        img.src = 'https://www.tasaki-global.com/pub/media/catalog/category/jewellery/jewellery_collection_line_kv_v2.jpg';
+        case 'Øreringe':
+        img.src = 'https://cms-live-rc.pandora.net/resource/responsive-image/3044572/m37-hybrid-plp-hero-module/lg/3/q224-essence-product-02-hybridhero.jpg';
         break;
-        case 'necklaces':
-        img.src = 'https://www.tasaki-global.com/pub/media/catalog/category/jewellery/jewellery_collection_line_kv_v2.jpg';
+        case 'Halskæder':
+        img.src = 'https://cms-live-rc.pandora.net/resource/responsive-image/3041118/m78-hero-module/lg/3/q224-essence-product-07-hero.jpg';
         break;
-        case 'bracelets':
-        img.src = 'https://www.tasaki-global.com/pub/media/catalog/category/jewellery/jewellery_collection_line_kv_v2.jpg';
+        case 'Armbånd':
+        img.src = '/src/images/bracelets.png';
+        break;
+        case 'Sølv':
+        img.src = 'https://cms-live-rc.pandora.net/resource/responsive-image/3041118/m78-hero-module/lg/3/q224-essence-product-07-hero.jpg';
+        img.classList.add('filter', 'grayscale');
         break;
         default:
         img.src = 'https://www.tasaki-global.com/pub/media/catalog/category/jewellery/jewellery_collection_line_kv_v2.jpg';
         break;
+        }
     }
-    }
-
+   
 
 
     function setDropDown(){

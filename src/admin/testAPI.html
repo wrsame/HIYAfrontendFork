@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opret nyt produkt</title>
+</head>
+
+<body>
+    <h1>Opret nyt produkt</h1>
+    <form id="productForm" enctype="multipart/form-data">
+        <label for="productName">Produktnavn:</label>
+        <input type="text" id="productName" name="productName" required>
+        <br>
+
+        <label for="material">Materiale:</label>
+        <input type="text" id="material" name="material">
+        <br>
+
+        <label for="price">Pris:</label>
+        <input type="number" step="0.01" id="price" name="price">
+        <br>
+
+        <label for="description">Beskrivelse:</label>
+        <textarea id="description" name="description" required></textarea>
+        <br>
+
+        <label for="images">Upload billeder:</label>
+        <input type="file" id="images" name="images" multiple required>
+        <br>
+
+        <label for="collection">Kollektion:</label>
+        <input type="text" id="collection" name="collection">
+        <br>
+
+        <label for="quantity">Lagerbeholdning:</label>
+        <input type="number" id="quantity" name="quantity">
+        <br>
+
+        <button type="submit">Opret produkt</button>
+    </form>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('productForm');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+
+                createProductSeries(formData.get('productName'))
+                    .then(productSeriesId => createProduct(productSeriesId, formData))
+                    .then(product => uploadImages(formData.getAll('images'))
+                        .then(imageURLs => {
+                            return saveImageUrls(product.id, imageURLs).then(() => product);
+                        }))
+                    .then(product => addProductToCollection(product.id, 1).then(() => product))
+                    .then(product => setInventory(product.id, formData.get('quantity')))
+                    .then(() => {
+                        alert('Produkt oprettet succesfuldt!');
+                    })
+                    .catch(error => {
+                        console.error("Fejl:", error);
+                        alert('Der opstod en fejl ved oprettelse af produktet.');
+                    });
+            });
+
+            function createProductSeries(productName) {
+                return fetch('http://127.0.0.1:8000/api/v1/productSeries', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: productName })
+                })
+                    .then(response => response.json())
+                    .then(data => data.id);
+
+            }
+
+            function createProduct(productSeriesId, formData) {
+                console.log("productSeriesId: ", productSeriesId);
+                const productData = {
+                    product_series_id: productSeriesId,
+                    material_id: 1, // Assuming formData contains 'material'
+                    description: "test", // Assuming formData contains 'description'
+                    price: 111 // Assuming formData contains 'price'
+                };
+
+                return fetch('http://127.0.0.1:8000/api/v1/products', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(productData)
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Backend Response: ", data);
+                        return data.product;
+                    });
+            }
+
+            function uploadImages(images) {
+                console.log("images: ", images)
+                const formData = new FormData();
+                images.forEach((image, index) => {
+                    formData.append('images[]', image);
+                });
+
+                return fetch('http://127.0.0.1:8000/api/v1/productImages/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => data.uploadedUrls)
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+
+            function saveImageUrls(productId, imageURLs) {
+
+                if (!imageURLs) {
+                    throw new Error('imageURLs is undefined');
+                }
+                console.log("imageURLs: ", imageURLs);
+
+                const promises = imageURLs.map((url, index) => {
+                    console.log(`Saving image URL ${url} for product ${productId}`);
+                    return fetch('http://127.0.0.1:8000/api/v1/productImages', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ product_id: productId, imageURL: url })
+                    })
+                        .then(response => {
+                            console.log(`Response status for image ${index}: ${response.status}`);
+                            if (!response.ok) {
+                                throw new Error(`Network response was not ok for image ${index}`);
+                            }
+                            return response.json();
+                        })
+                        .catch(error => {
+                            console.error(`There was a problem with the fetch operation for image ${index}:`, error);
+                            throw error;
+                        });
+                });
+
+                return Promise.all(promises);
+            }
+
+            function addProductToCollection(productId, collectionName) {
+                return fetch('http://127.0.0.1:8000/api/v1/PC', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ product_id: productId, collection_id: 1 })
+                })
+                    .then(response => response.json());
+            }
+
+            function setInventory(productId, quantity) {
+                return fetch('http://127.0.0.1:8000/api/v1/inventory', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ product_id: productId, quantity: quantity })
+                })
+                    .then(response => response.json());
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>

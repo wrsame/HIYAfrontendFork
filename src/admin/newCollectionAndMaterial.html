@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection and Material</title>
+    <link href="../output.css" rel="stylesheet">
+    <link href="/src/css/global.css" rel="stylesheet">
+    <script type="module" defer src="newCollectionAndMaterial.js"></script>
+
+</head>
+
+<body class="primary-bgColor p-20 flex flex-col gap-20 items-center justify-center min-h-screen">
+    <form id="collectionForm" class="bg-white p-8 rounded-lg shadow-md w-full max-w-lg" enctype="multipart/form-data">
+        <h1 class="text-3xl">Opret Kollektion</h1>
+        <div class="my-4">
+            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Navn:</label>
+            <input type="text" id="name" name="name" class="border border-gray-300 rounded-md p-2 w-full">
+        </div>
+        <div class="mb-4">
+            <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Beskrivelse:</label>
+            <textarea id="description" name="description"
+                class="border border-gray-300 rounded-md p-2 w-full"></textarea>
+        </div>
+        <div class="mb-4">
+            <label for="isActive" class="block text-gray-700 text-sm font-bold mb-2">Aktiv:</label>
+            <input type="checkbox" id="isActive" name="isActive" checked class="form-checkbox h-5 w-5 text-blue-600">
+        </div>
+        <div class="text-right">
+            <button type="submit" class="primary-bgColor text-white rounded-md px-4 py-2">Gem</button>
+        </div>
+    </form>
+
+    <form id="MaterialForm" class="bg-white p-8 rounded-lg shadow-md w-full max-w-lg" enctype="multipart/form-data">
+        <h1 class="text-3xl">Opret Materiale</h1>
+        <div class="my-4">
+            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Navn:</label>
+            <input type="text" id="name" name="name" class="border border-gray-300 rounded-md p-2 w-full">
+        </div>
+        <div class="text-right">
+            <button type="submit" class="primary-bgColor text-white rounded-md px-4 py-2">Gem</button>
+        </div>
+    </form>
+</body>
+
+</html>
