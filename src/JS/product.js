@@ -1,6 +1,8 @@
 import { updateCartQuantityBadge } from "./cartUtils.js";
-import { getOneProduct, getProductsByProductSeries } from "../api/data/getData.js"
+import { getOneProduct, getProductsByProductSeries, getLimitedProducts } from "../api/data/getData.js"
+import { productSlider } from "./productSlider.js";
 import {baseUrl} from "../api/requests.js"
+
 
 document.addEventListener("DOMContentLoaded", async function () {
 
@@ -50,6 +52,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         productsByProductSeries(product.product_series.id)
         
     }
+
+    const products = await getLimitedProducts(8)
+    productSlider(products, 'productSlider');  //productSlider is sectionId
 
    
 });

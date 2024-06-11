@@ -1,14 +1,9 @@
 import { fetchData, baseApi } from "../requests.js";
+import { productSeriesEndpoint, productsEndpoint, uploadImagesEndpoint, saveImageUrlsEndpoint,
+addProductToCollectionEndpoint, inventory, collectionEndpoint, materialsEndpoint, ordersEndpoint,
+orderDetailsEndpoint, addressEndpoint } from "./endpoints.js";
 
 //------Endpoints----
-const productSeriesEndpoint = '/productSeries';
-const productsEndpoint = '/products';
-const uploadImagesEndpoint = '/productImages/upload';
-const saveImageUrlsEndpoint = '/productImages';
-const addProductToCollectionEndpoint = '/PC';
-const setInventoryEndpoint = '/inventory';
-const collection = '/collections';
-const material = '/materials';
 
 const createOperation = 'create'
 
@@ -53,13 +48,20 @@ export const saveImageUrls = (productId, images) => {
 //-----------ProductCollection--------------
 export const addProductToCollection = (productId, collectionId) => fetchData(createOperation, addProductToCollectionEndpoint, { product_id: productId, collection_id: collectionId });
 
-
-//-----------Inventory--------------
-export const setInventory = (productId, quantity) => fetchData(createOperation, setInventoryEndpoint, { product_id: productId, quantity });
-
+//-----------Inventory-------------
+export const setInventory = (productId, quantity) => fetchData(createOperation, inventory, { product_id: productId, quantity });
 
 //-----------collection--------------
-export const createCollection = (name) => fetchData(createOperation, collection, name)
+export const createCollection = (name) => fetchData(createOperation, collectionEndpoint, name)
 
 //-----------material--------------
-export const createMaterial = (name) => fetchData(createOperation, material, name)
+export const createMaterial = (name) => fetchData(createOperation, materialsEndpoint, name)
+
+//-----------Order--------------
+export const createOrder = (orderData) => fetchData(createOperation, ordersEndpoint, orderData)
+
+//-----------Order details--------------
+export const createOrderDetails = (orderDetailsData) => fetchData(createOperation, orderDetailsEndpoint, orderDetailsData)
+
+//-----------Address--------------
+export const createAddress = (data) => fetchData(createOperation, addressEndpoint, data)

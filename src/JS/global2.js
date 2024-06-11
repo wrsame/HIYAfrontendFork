@@ -1,14 +1,16 @@
+import { getCollections } from "../api/data/getData.js"
+
 // -----------------------NAVIGATION BUILDER-------------------------------
 
-  import { getCollections } from "../api/data/getData.js"
+    const basePath = '/src/html'
 
     document.addEventListener("DOMContentLoaded", async function () {
-      const menuItems = [ 
+      const menuItems = [
         {
           name: "Smykker",
           href: "",
           dropdown: [
-            { name: "Alle smykker", href: "/src/html/collections/main.html#all" },
+            { name: "Alle smykker", href: `${basePath}/collections/main.html#all` },
           ],
         },
         {
@@ -22,29 +24,30 @@
         },
         {
           name: "Om Hiya",
-          href: "/src/html/aboutUs.html",
+          href: `${basePath}/aboutUs.html`,
         },
         {
           name: "Kontakt",
-          href: "/src/html/contact.html",
+          href: `${basePath}/contact.html`,
         },
       ];
-
+    
       try {
         const collections = await getCollections();
-        collections.forEach(collection => {
-          menuItems[0].dropdown.push({ name: collection.name, href: `/src/html/collections/main.html#${collection.name}`});
+        collections.forEach((collection) => {
+          menuItems[0].dropdown.push({
+            name: collection.name,
+            href: `${basePath}/collections/main.html#${collection.name}`,
+          });
         });
-       
       } catch (error) {
-        console.error('Error fetching collections:', error);
+        console.error("Error fetching collections:", error);
       }
     
-
       function buildNavbar(menuItems) {
         let desktopMenu = "";
         let mobileMenu = "";
-
+    
         menuItems.forEach((item, index) => {
           if (item.dropdown) {
             desktopMenu += `
@@ -61,7 +64,7 @@
                       .join("")}
                   </div>
                 </div>`;
-
+    
             mobileMenu += `
                 <div class="mobile-dropdown">
                   <button class="outline-none block w-full text-left px-4 py-2 text-black" data-index="${index}" style="outline: none;">${
@@ -81,37 +84,42 @@
             mobileMenu += `<button onclick="location.href='${item.href}'" class="outline-none block w-full text-left px-4 py-2 text-black" style="outline: none;">${item.name}</button>`;
           }
         });
-
-        let t = updateCartQuantityBadge()  
-
-        // Adding the cart icon in the desktop and mobile menus
+    
+        let cartItems = totalCartItems();
+    
+        // Adding the cart icon and profile icon in the desktop and mobile menus
         const cartIcon = `
-        <div class="relative inline-block"> 
-        <a href="/src/html/cart.html" class="outline-none">
+        <div class="relative inline-block">
+          <a href="/src/html/cart.html" class="outline-none">
             <img src="/src/images/shoppingBag.png" alt="cart" class="w-10 h-10">
             <div id="cart-quantity-badge" class="absolute bottom-0 light-blue-col right-0 blue text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-            ${t}
+              ${cartItems}
             </div>
-        </a>
-    </div>`
+          </a>
+        </div>`;
+  
+      const profileIcon = `
+        <div class="relative inline-block ml-4 flex justify-center ">
+          <button class="profile-btn outline-none" style="outline: none;" onclick="window.location.href= '/src/HTML/profile.html'">
+            <img src="/src/images/profile.png" alt="profile" class="w-7 h-7">
+          </button>`;
+    
         return `
           <nav class="">
             <div class="container flex flex-row justify-between items-center">
               <div class="flex items-center">
-                <a href="/src/html/index2.html" class="text-black font-bold text-2xl">
-                <img src="/src/images/FullLogo.png"
-                            alt="logo"
-                            class="w-24 md:w-32">
-                            </a>
+                <a href="/" class="text-black font-bold text-2xl">
+                  <img src="/src/images/FullLogo.png" alt="logo" class="w-24 md:w-32">
+                </a>
               </div>
               <div class="hidden md:flex items-center">
                 ${desktopMenu}
-                <div class="ml-4">${cartIcon}</div>
+                <div class="ml-4 flex items-center justify-center">${cartIcon}${profileIcon}</div>
               </div>
-              <div class="md:hidden flex items-center">
-                <div class="mr-4">${cartIcon}</div>
+              <div class="md:hidden flex items-center ">
+                <div class="mr-4 flex items-center justify-center">${cartIcon}${profileIcon}</div>
                 <button id="menu-button" class="outline-none text-black p-0">
-                  <i class="fa-solid fa-bars fa-xl" style="color: #000000; outline: none;"></i>
+                 <img src="https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-462145.png?f=webp" class="w-10">
                 </button>
               </div>
             </div>
@@ -129,21 +137,22 @@
             </div>
           </div>`;
       }
-
+    
+  
       document.getElementById("navbar-container").innerHTML = buildNavbar(menuItems);
-
+    
       document.getElementById("menu-button").addEventListener("click", function () {
         var menu = document.getElementById("mobile-menu");
         menu.classList.add("open");
         menu.style.transform = "translateX(0)";
       });
-
+    
       document.getElementById("close-menu-button").addEventListener("click", function () {
         var menu = document.getElementById("mobile-menu");
         menu.classList.remove("open");
         menu.style.transform = "translateX(100%)";
       });
-
+    
       document.querySelectorAll(".dropdown").forEach((dropdown) => {
         dropdown.addEventListener("mouseenter", function () {
           this.querySelector(".dropdown-menu").classList.remove("hidden");
@@ -154,7 +163,7 @@
           this.querySelector("i").classList.remove("rotate");
         });
       });
-
+    
       document.querySelectorAll(".mobile-dropdown button").forEach((button) => {
         button.addEventListener("click", function () {
           const index = this.getAttribute("data-index");
@@ -163,10 +172,11 @@
           this.querySelector("i").classList.toggle("rotate");
         });
       });
-      
-    });
 
-    function updateCartQuantityBadge(){
+    });
+    
+
+    function totalCartItems(){
      
   
       const cart = JSON.parse(localStorage.getItem('HIYAcart')) || [];
@@ -197,6 +207,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
   setInterval(updateText, 4000); // Skift tekst hver 4 sekunder
 });
+
+
+//-------------TITLE SLIDER -----------------
+
+  document.addEventListener('scroll', function () {
+      const scrolled = window.scrollY;
+      const headers = document.querySelectorAll('.parallax');
+      headers.forEach(header => {
+          header.style.transform = `translateY(${scrolled * 0.2}px)`;
+      });
+  });
 
 
 //----------------------------- FOOTER -----------------------------------

@@ -1,77 +1,49 @@
-import { productSlider } from "./productSlider.js";
+import { productSlider } from "./productSlider.js"; 
+import { getLimitedProducts, getLatestCollections } from "../api/data/getData.js";
+import { setLatestCollections } from "./lastestCollections.js";
 
 
 //------produkt slider----
 
-const products = [
-    {
-        imageUrl: 'https://nominalx.com/cdn/shop/files/WR-VERILY-G_900x.png?v=1715914607',
-        altText: 'Product 1',
-        price: '299 dkk',
-        text: 'tekst',
-        specialtyText: ''
-    },
-    {
-        imageUrl: 'https://nominalx.com/cdn/shop/files/CustomNameSarah_900x.jpg?v=1710288477',
-        altText: 'Product 2',
-        price: '299 dkk',
-        text: 'tekst',
-        specialtyText: 'TEKST'
-    },
-    {
-        imageUrl: 'https://nominalx.com/cdn/shop/products/AyatulKursiCuff_900x.jpg?v=1651015366',
-        altText: 'Product 3',
-        price: '299 dkk',
-        text: 'tekst',
-        specialtyText: 'TEKST'
-    },
-    {
-        imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
-        altText: 'Product 3',
-        price: '299 dkk',
-        text: 'tekst',
-        specialtyText: 'TEKST'
-    }
-    ,
-    {
-        imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
-        altText: 'Product 3',
-        price: '299 dkk',
-        text: 'tekst',
-        specialtyText: 'TEKST'
-    }
-    ,
-    {
-        imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
-        altText: 'Product 3',
-        price: '299 dkk',
-        text: 'tekst',
-        specialtyText: 'TEKST'
-    }
-    ,
-    {
-        imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
-        altText: 'Product 3',
-        price: '299 dkk',
-        text: 'tekst',
-        specialtyText: 'TEKST'
-    }
-    ,
-    {
-        imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
-        altText: 'Product 3',
-        price: '299 dkk',
-        text: 'tekst',
-        specialtyText: 'TEKST'
-    }
-    ,
-    {
-        imageUrl: 'https://i.pinimg.com/564x/ba/5e/01/ba5e01fc88758ff92489bfd2ed74d6dc.jpg',
-        altText: 'Product 3',
-        price: '299 dkk',
-        text: 'tekst',
-        specialtyText: 'TEKST'
-    }
-];
+document.addEventListener("DOMContentLoaded", async function () {
+    
+    const products = await getLimitedProducts(8)
+    productSlider(products, 'productSlider');  //productSlider is sectionId
 
-productSlider(products, 'productSlider');
+    const latestCollections = await getLatestCollections(3)
+
+    const collections = latestCollections.map(collection => ({
+        name: collection.name,
+        link: `/src/html/collections/main.html#${collection.name}`
+    }));
+
+    // Manuelt tilføje imgSrc til collections
+    collections[0].imgSrc = "https://i.pinimg.com/564x/14/cc/34/14cc34b0c12a2ebbb2f66a4efc706586.jpg";
+    collections[1].imgSrc = "https://i.pinimg.com/564x/c0/80/c0/c080c0d9f114bbc816565c219bbf40dd.jpg";
+    collections[2].imgSrc = "https://i.pinimg.com/564x/96/8c/6c/968c6c2664906f5a1f8aea07509ac9c9.jpg";
+
+
+    setLatestCollections(collections, 'collections-container')
+
+})
+
+
+//--------Latest collections --------
+// const collections = [
+//     {
+//         imgSrc: 'https://i.pinimg.com/564x/14/cc/34/14cc34b0c12a2ebbb2f66a4efc706586.jpg',
+//         name: 'Collection 1',
+//         link: '#'
+//     },
+//     {
+//         imgSrc: 'https://i.pinimg.com/564x/c0/80/c0/c080c0d9f114bbc816565c219bbf40dd.jpg',
+//         name: 'Collection 2',
+//         link: '#'
+//     },
+//     {
+//         imgSrc: 'https://i.pinimg.com/564x/96/8c/6c/968c6c2664906f5a1f8aea07509ac9c9.jpg',
+//         name: 'Collection 3',
+//         link: '#'
+//     }
+// ];
+

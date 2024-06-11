@@ -1,3 +1,5 @@
+import {baseUrl} from "../api/requests.js"
+
 export function productSlider(products, sectionId) {
     const section = document.getElementById(sectionId);
 
@@ -10,36 +12,53 @@ export function productSlider(products, sectionId) {
         productWrapper.className = 'productWrapper w-max h-auto m-3';
 
         const productImageWrapper = document.createElement('div');
-        productImageWrapper.className ='w-44 h-44 lg:w-72 lg:h-72 border-2 relative' ;
+        productImageWrapper.className ='w-44 h-44 lg:w-72 lg:h-72 border-2 relative cursor-pointer' ;
 
         const productSpecialty = document.createElement('div');
         productSpecialty.className = 'productSpecialty absolute inset-2 text-sm';
-        productSpecialty.innerText = product.specialtyText;
+        productSpecialty.innerText = product.description;
 
         const productImage = document.createElement('img');
         productImage.className = 'object-cover w-full h-full';
-        productImage.src = product.imageUrl;
+        const primaryImage = product.images.find(image => image.is_primary);
+        if (primaryImage) {
+            productImage.src = `${baseUrl}${primaryImage.imageURL}`;
+        } else {
+        productImage.src = `${baseUrl}${product.images[0].imageURL}`;
+        }
         productImage.alt = product.altText;
 
-        const wishlistButton = document.createElement('button');
-        wishlistButton.className = 'card-btn';
-        wishlistButton.innerText = 'Køb';
-        wishlistButton.style.outline = "none"
+
+        const viewProduct = document.createElement('button');
+        viewProduct.className = 'card-btn ';
+        viewProduct.innerText = 'se produkt';
+        viewProduct.style.outline = "none"
+        viewProduct.dataset.productId = product.id;
+
+        // Add event listener to redirect to the product page
+        viewProduct.addEventListener('click', function() {
+            window.location.href = `/src/html/collections/product.html?id=${product.id}`;
+        });
+
+        productImageWrapper.addEventListener('click', function() {
+            window.location.href = `/src/html/collections/product.html?id=${product.id}`;
+        });
+    
 
         productImageWrapper.appendChild(productSpecialty);
         productImageWrapper.appendChild(productImage);
-        productImageWrapper.appendChild(wishlistButton);
+        productImageWrapper.appendChild(viewProduct);
 
         const productInfoWrapper = document.createElement('div');
         productInfoWrapper.className = 'w-full p-1 flex justify-between';
 
         const productPrice = document.createElement('p');
         productPrice.className = 'text-sm';
-        productPrice.innerText = product.price;
+        productPrice.innerText = product.price + " dkk";
 
         const productText = document.createElement('p');
         productText.className = 'text-sm';
-        productText.innerText = product.text;
+        productText.innerText = product.product_series.name;
 
         productInfoWrapper.appendChild(productPrice);
         productInfoWrapper.appendChild(productText);

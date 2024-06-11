@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const products = await getProductSeries();
-        console.log('Fetched products:', products);
-        populateDropdown(productNameSelect, products, 'name');
+        const productsSeries = await getProductSeries();
+        console.log('Fetched products:', productsSeries);
+        populateDropdown(productNameSelect, productsSeries, 'name');
     } catch (error) {
         console.error('Error fetching products:', error);
     }
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 combinedFormData.append('images[]', image);
             });
 
-            console.log("Combined FormData for upload: ", Array.from(combinedFormData.entries()));
+            // console.log("Combined FormData for upload: ", Array.from(combinedFormData.entries()));
             const uploadedURLs = await uploadImages(combinedFormData);
             console.log("Uploaded URLs: ", uploadedURLs);
 

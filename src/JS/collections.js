@@ -23,14 +23,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         selectedProducts.forEach(product => {
             const productWrapper = document.createElement('div');
             productWrapper.className = 'productWrapper w-min h-auto my-3 mx-2';
-
+        
             const productImageWrapper = document.createElement('div');
-            productImageWrapper.className = 'w-40 h-44 lg:w-56 lg:h-60 border-2 relative';
-
+            productImageWrapper.className = 'w-40 h-44 lg:w-56 lg:h-60 border-2 relative cursor-pointer';
+        
             const productSpecialty = document.createElement('div');
             productSpecialty.className = 'productSpecialty absolute inset-2 text-sm';
             productSpecialty.innerText = product.description;
-
         
             const productImage = document.createElement('img');
             productImage.className = 'object-cover w-full h-full';
@@ -38,44 +37,51 @@ document.addEventListener("DOMContentLoaded", async function () {
             if (primaryImage) {
                 productImage.src = `${baseUrl}${primaryImage.imageURL}`;
             } else {
-            productImage.src = `${baseUrl}${product.images[0].imageURL}`;
+                productImage.src = `${baseUrl}${product.images[0].imageURL}`;
             }
             productImage.alt = product.altText;
-
+        
             const buyButton = document.createElement('button');
             buyButton.className = 'card-btn outline-none';
-            buyButton.innerText = 'Køb';
+            buyButton.innerText = 'Se produkt';
             buyButton.style.outline = "none";
-            buyButton.dataset.productId = product.id; // Add product ID to button
-
+            buyButton.dataset.productId = product.id;
+        
             // Add event listener to redirect to the product page
-            buyButton.addEventListener('click', function() {
+            buyButton.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent the event from bubbling up to the wrapper
                 window.location.href = `/src/html/collections/product.html?id=${product.id}`;
             });
-
+        
+            // Add event listener to the image wrapper to redirect to the product page
+            productImageWrapper.addEventListener('click', function() {
+                window.location.href = `/src/html/collections/product.html?id=${product.id}`;
+            });
+        
             productImageWrapper.appendChild(productSpecialty);
             productImageWrapper.appendChild(productImage);
             productImageWrapper.appendChild(buyButton);
-
+        
             const productInfoWrapper = document.createElement('div');
             productInfoWrapper.className = 'w-full p-1 flex justify-between';
-
+        
             const productText = document.createElement('p');
             productText.className = 'text-sm w-2/4 break-words';
             productText.innerText = product.product_series.name;
-            
+        
             const productPrice = document.createElement('p');
             productPrice.className = 'text-sm';
             productPrice.innerText = product.price + " dkk";
-
+        
             productInfoWrapper.appendChild(productText);
             productInfoWrapper.appendChild(productPrice);
-
+        
             productWrapper.appendChild(productImageWrapper);
             productWrapper.appendChild(productInfoWrapper);
-
+        
             productList.appendChild(productWrapper);
         });
+        
 
     }
 
@@ -118,20 +124,19 @@ function setCoverImg(category) {
     }
    
 
-
     function setDropDown(){
 
     const materialDropdown = document.getElementById("material-dropdown");
     const collectionDropdown = document.getElementById("collection-dropdown");
 
     materialDropdown.addEventListener("click", function (event) {
-        event.stopPropagation(); // Prevent event from bubbling up
+        event.stopPropagation(); 
         console.log("Materiale dropdown toggled");
         toggleDropdown("dropdown-material-content");
     });
 
     collectionDropdown.addEventListener("click", function (event) {
-        event.stopPropagation(); // Prevent event from bubbling up
+        event.stopPropagation(); 
         console.log("Kollektion dropdown toggled");
         toggleDropdown("dropdown-collection-content");
     });
@@ -153,7 +158,7 @@ function setCoverImg(category) {
         }
     }
 
-    // Close dropdowns if the user clicks outside of them
+
     window.addEventListener("click", function () {
         var dropdowns = document.getElementsByClassName("dropdown-content");
         for (var i = 0; i < dropdowns.length; i++) {

@@ -18,10 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const response = await createCollection(data);
-            alert('Kollektionen blev oprettet succesfuldt!');
-            collectionForm.reset(); 
+            if (response.success) { 
+                alert('kollektion blev succesfuldt oprettet!');
+                collectionForm.reset();
+            } else {
+                throw new Error('creation failed', response);
+            }
         } catch (error) {
-            console.error('Fejl ved oprettelse af kollektionen:', error);
             alert('Der opstod en fejl ved oprettelse af kollektionen.');
         }
     });

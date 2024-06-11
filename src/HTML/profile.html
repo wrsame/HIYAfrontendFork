@@ -1,0 +1,91 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIYA</title>
+    <link href="/src/output.css" rel="stylesheet">
+    <link href="/src/css/global.css" rel="stylesheet">
+    <link href="/src/css/animations.css" rel="stylesheet">
+    <script defer type="module" src="/src/JS/global2.js"></script>
+    <script defer type="module" src="/src/JS/profile.js"></script>
+    <script src="https://kit.fontawesome.com/d17e4552c5.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-serif relative">
+
+    <div>
+        <div class="topBar bg-black w-full h-8 text-sm text-center flex items-center justify-center z-100 font-sans">
+            <span class="lg:w-3/12" id="sliderText"></span>
+        </div>
+
+        <div class="relative h-max w-full inset-0 p-3 lg:px-32 zindex-100 2xl:px-80 border-b border-gray-200">
+            <div id="navbar-container"></div>
+        </div>
+    </div>
+
+    <div class="mainContent primary-light-col">
+        <div class="p-10 lg:p-20 lg:px-32 flex flex-col ">
+            <div class="container mb-2 md:mb-16">
+                <h1 class="text-3xl md:text-4xl font-semibold text-gray-800">Godt at se dig igen, <span
+                        class="customerName font-bold"></span>!</h1>
+            </div>
+            <div class="container my-10 font-sans">
+                <nav class="primary-bgColor text-white rounded-lg shadow-lg">
+                    <ul class="flex flex-wrap space-x-4 p-4">
+                        <li><a href="#" id="order-tab"
+                                class="tab-link hover:underline px-5 border-r border-white active">ORDRE</a></li>
+                        <li><a href="#" id="info-tab" class="tab-link hover:underline">MINE OPLYSNINGER</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="container mx-auto mt-4 md:px-10">
+                <div id="order-history" class="tab-content">
+                    <h2 class="text-2xl font-semibold text-gray-800">Ordre Historik</h2>
+                    <div class="order-history mt-6">
+                        <!-- Order history will be dynamically injected here -->
+                    </div>
+                </div>
+                <div id="user-info" class="tab-content hidden">
+                    <h2 class="text-2xl font-semibold text-gray-800">Mine Oplysninger</h2>
+                    <form class="user-info-form bg-white p-8 rounded-lg shadow mt-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="first_name" class="block text-sm font-medium text-gray-700">Fulde
+                                    navn</label>
+                                <input type="text" id="first_name" name="first_name"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    required>
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700">Mobil nummer</label>
+                                <input type="text" id="phone" name="phone"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">E-mail</label>
+                                <input type="email" id="email" name="email"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button type="submit"
+                                class="w-full rounded-lg font-sans text-2xl bg-black p-4 text-white hover:opacity-70">GEM
+                                ÆNDRINGER</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer" class="footer flex flex-col justify-between"></footer>
+</body>
+
+
+
+</html>

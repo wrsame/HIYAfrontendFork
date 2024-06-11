@@ -78,7 +78,8 @@ async function fetchData(operation, endpoint, data = null) {
                 throw new Error('Invalid operation');
         }
     } catch (error) {
-        alert(`Error: ${error.message}`);
+        console.error(`Error during ${operation} operation to ${endpoint}:`, error);
+        throw error; 
     }
 }
 

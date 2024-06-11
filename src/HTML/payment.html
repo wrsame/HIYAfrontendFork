@@ -1,0 +1,226 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIYA</title>
+    <link href="/src/output.css" rel="stylesheet">
+    <link href="/src/css/global.css" rel="stylesheet">
+    <link href="/src/css/animations.css" rel="stylesheet">
+    <script defer type="module" src="/src/JS/global2.js"></script>
+    <script defer type="module" src="/src/JS/shippingAndPayment.js"></script>
+    <script src="https://kit.fontawesome.com/d17e4552c5.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="font-serif relative">
+
+
+
+    <div>
+        <div class="topBar bg-black w-full h-8 text-sm text-center flex items-center justify-center z-100 font-sans">
+            <span class="lg:w-3/12" id="sliderText"></span>
+        </div>
+
+        <div class="relative h-max w-full inset-0 p-3 lg:px-32 zindex-100 2xl:px-80 border-b border-gray-200">
+            <div id="navbar-container"></div>
+        </div>
+    </div>
+
+    <div class="mainContent">
+
+
+        <div class="flex flex-col-reverse lg:flex-row justify-between">
+            <div class="p-10 lg:px-20 lg:my-8 w-full lg:w-7/12">
+                <div class="CustomerInfo mb-20">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="">
+                            <p class="Customer-name text-4xl"></p>
+                            <p class="Customer-email text-lg m-2 font-sans"></p>
+                            <p class="Customer-phone text-lg m-2 font-sans"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="address-form" class="address-form max-w-2xl my-8 font-sans">
+                    <h2 class="text-2xl font-bold mb-6">Levering</h2>
+
+                    <div class="mb-4">
+                        <label for="name" class="block text-sm font-medium text-gray-700">Levering til</label>
+                        <input type="text" id="name" name="name" placeholder="fulde navn"
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="country" class="block text-sm font-medium text-gray-700">Land/område</label>
+                        <select id="country" name="country"
+                            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            required>
+                            <option>Danmark</option>
+                            <!-- Add more options here -->
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="company" class="block text-sm font-medium text-gray-700">Firma (valgfri)</label>
+                        <input type="text" id="company" name="company"
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="address" class="block text-sm font-medium text-gray-700">Adresse</label>
+                        <input type="text" id="address" name="address"
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="apartment" class="block text-sm font-medium text-gray-700">Lejlighed, etage
+                            osv.</label>
+                        <input type="text" id="apartment" name="apartment"
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            required>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="postalcode" class="block text-sm font-medium text-gray-700">Postnummer</label>
+                            <input type="text" id="postalcode" name="postalcode"
+                                class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required>
+                        </div>
+                        <div>
+                            <label for="city" class="block text-sm font-medium text-gray-700">By</label>
+                            <input type="text" id="city" name="city"
+                                class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="region" class="block text-sm font-medium text-gray-700">Region</label>
+                        <input type="text" id="region" name="region"
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            required>
+                    </div>
+                </form>
+
+                <form class="payment-form bg-white p-8 rounded-lg shadow mt-20 w-full font-sans">
+                    <h2 class="text-2xl font-bold mb-2">Betaling</h2>
+                    <p class="text-sm text-gray-500 mb-6">Alle transaktioner er sikre og krypterede.</p>
+
+                    <div class="flex flex-wrap gap-4 mb-4">
+                        <img src="https://images.prismic.io/docsportal/502240a8-506e-44b3-84eb-d8e57609ab93_Marketing_Badge_With_Clear_Space.png?auto=compress,format"
+                            alt="Klarna" class=" h-5 md:h-8">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/2560px-Google_Pay_Logo.svg.png"
+                            alt="Google Pay" class=" h-5 md:h-8">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Apple_Pay_logo.svg/512px-Apple_Pay_logo.svg.png"
+                            alt="Apple Pay" class=" h-5 md:h-8">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa"
+                            class=" h-5 md:h-8">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
+                            alt="Mastercard" class=" h-5 md:h-8">
+                    </div>
+
+                    <div class="border-t border-gray-300 py-4">
+                        <div class="flex items-center m-8 pb-3 border-b border-gray-200">
+                            <input type="radio" name="payment" id="creditcard" class="mr-2">
+                            <label for="creditcard" class="text-lg font-medium flex-grow">Kreditkort</label>
+                            <div class="flex gap-2">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa"
+                                    class=" h-5 md:h-8">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
+                                    alt="Mastercard" class=" h-5 md:h-8">
+                                <span class="text-gray-500">+4</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center m-8 pb-3 border-b border-gray-200">
+                            <input type="radio" name="payment" id="mobilepay" class="mr-2">
+                            <label for="mobilepay" class="text-lg font-medium flex-grow">Mobilepay</label>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8a_Takmy51VmnpmB7mIDOaClu4hedtFdVdA&s"
+                                alt="MP" class=" h-5 md:h-8">
+                        </div>
+                        <div class="flex items-center m-8 pb-3 border-b border-gray-200">
+                            <input type="radio" name="payment" id="klarna" class="mr-2">
+                            <label for="klarna" class="text-lg font-medium flex-grow">Klarna - Betal nu eller
+                                senere</label>
+                            <img src="https://images.prismic.io/docsportal/502240a8-506e-44b3-84eb-d8e57609ab93_Marketing_Badge_With_Clear_Space.png?auto=compress,format"
+                                alt="Klarna" class=" h-5 md:h-8">
+                        </div>
+
+                        <div class="flex items-center m-8 pb-3 border-b border-gray-200">
+                            <input type="radio" name="payment" id="paypal" class="mr-2">
+                            <label for="paypal" class="text-lg font-medium flex-grow">PayPal</label>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal"
+                                class=" h-5 md:h-8">
+                        </div>
+                    </div>
+
+                    <div class="px-3 lg:px-28">
+                        <button
+                            class="w-full rounded-lg font-sans text-2xl bg-black p-4 text-white hover:opacity-70 hover:cursor-pointer"
+                            type="submit">Gennemfør
+                            betaling</button>
+                    </div>
+                </form>
+            </div>
+            <!-- mobile -->
+            <div class=" border-b border-gray-300 px-5 lg:hidden  ">
+                <h1 class="my-5  text-base">Ordreoversigt</h1>
+                <div class="products-container-mobile flex overflow-x-auto space-x-2">
+                </div>
+                <div class="flex my-5 justify-between text-lg font-bold text-gray-700">
+                    <span>Subtotal</span>
+                    <span class="subtotal"></span>
+                </div>
+            </div>
+
+            <!-- dekstop -->
+            <div class="w-full hidden lg:block lg:w-5/12 bg-white p-10 shadow-lg zindex-200">
+                <h1 class=" text-2xl font-bold mb-10">Ordreoversigt</h1>
+                <div class="products-container "></div>
+
+                <div class="mb-4">
+                    <label for="discount" class="block text-sm font-medium text-gray-700">Rabattkode eller
+                        gavekort</label>
+                    <div class="flex mt-1">
+                        <input type="text" id="discount" name="discount"
+                            class="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            disabled>
+                        <button type="button"
+                            class="ml-2 py-2 px-4 bg-gray-300 text-gray-700 font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Brug</button>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-300 py-4">
+                    <div class="flex justify-between text-gray-700">
+                        <span>Subtotal</span>
+                        <span class="subtotal"></span>
+                    </div>
+                    <!-- <div class="flex justify-between text-gray-700 mt-2">
+                    <span>Levering <span class="text-gray-400" title="Delivery fee may apply">?</span></span>
+                    <span>Angiv leveringsadresse</span>
+                </div> -->
+                    <div class="flex justify-between text-xl font-semibold mt-4">
+                        <span>I alt</span>
+                        <span class="subtotal"></span>
+                    </div>
+                    <div class="text-gray-500 text-sm mt-2">
+                        <!-- <span>Inklusiv 439,60 kr. i afgifter</span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer" class="footer flex flex-col justify-between "></footer>
+    </footer>
+
+</body>
+
+</html>
