@@ -1,0 +1,104 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIYA</title>
+    <link href="/src/output.css" rel="stylesheet">
+    <link href="/src/css/global.css" rel="stylesheet">
+    <link href="/src/css/animations.css" rel="stylesheet">
+    <script defer type="module" src="/src/JS/global2.js"></script>
+    <script defer type="module" src="/src/JS/loginUtils.js"></script>
+    <script src="https://kit.fontawesome.com/d17e4552c5.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-serif relative">
+
+    <div>
+        <div class="topBar bg-black w-full h-8 text-sm text-center flex items-center justify-center z-100 font-sans">
+            <span class="lg:w-3/12" id="sliderText"></span>
+        </div>
+
+        <div class="relative h-max w-full inset-0 p-3 lg:px-32 zindex-100 2xl:px-80 border-b border-gray-200">
+            <div id="navbar-container"></div>
+        </div>
+    </div>
+
+    <div class="primary-superlight-col flex justify-center min-h-screen font-sans">
+        <div class="container mx-auto p-4 max-w-3xl">
+            <div class="form-box bg-white p-8 rounded-lg shadow-lg mt-10">
+                <form id="login-form" class="space-y-6">
+                    <h2 class="text-2xl font-bold mb-4">Login</h2>
+                    <div class="input-group">
+                        <label for="login-email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="login-email" required
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" id="login-password" required
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <button type="submit"
+                        class="w-full py-2 px-4 primary-bgColor text-white font-medium rounded-md shadow-sm focus:outline-none hover:opacity-70">Login</button>
+                    <p class="text-sm text-gray-600">Er du ikke registreret? <a href="#" id="show-signup"
+                            class="font-bold hover:opacity-70">Klik her.</a></p>
+                </form>
+
+                <form id="signup-form" class="hidden space-y-4">
+                    <h2 class="text-2xl font-bold mb-4">Registrer</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="input-group">
+                            <label for="signup-firstname"
+                                class="block text-sm font-medium text-gray-700">Fornavn</label>
+                            <input type="text" id="signup-firstname" required
+                                class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                        <div class="input-group">
+                            <label for="signup-lastname"
+                                class="block text-sm font-medium text-gray-700">Efternavn</label>
+                            <input type="text" id="signup-lastname" required
+                                class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="signup-email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="signup-email" required
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div class="input-group">
+                        <label for="signup-password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" id="signup-password" required
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div class="input-group">
+                        <label for="signup-repeat-password" class="block text-sm font-medium text-gray-700">Gentag
+                            password</label>
+                        <input type="password" id="signup-repeat-password" required
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div class="input-group">
+                        <label for="signup-phone" class="block text-sm font-medium text-gray-700">Telefon nummer
+                            (optional)</label>
+                        <input type="text" id="signup-phone"
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <button type="submit"
+                        class="w-full py-2 px-4 primary-bgColor text-white font-medium rounded-md shadow-sm focus:outline-none hover:opacity-70">Sign
+                        Up</button>
+                    <p class="text-sm text-gray-600">Allerede registreret? <a href="#" id="show-login"
+                            class="font-bold hover:opacity-70">Log ind her.</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer" class="footer flex flex-col justify-between "></footer>
+    </footer>
+
+</body>
+
+</html>
