@@ -1,20 +1,37 @@
 import { getCustomerOrdreHistory } from "../api/data/getData.js";
 import {baseUrl} from "../api/requests.js"
+import { logout } from "../api/authRequests.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
+    const customer = JSON.parse(sessionStorage.getItem('customer-HIYA'));
+
+    if(!customer){
+        window.location.href = '/src/html/loginAndRegistration.html';
+    }
+
+
     const customerName = document.querySelector(".customerName");
     const orderHistoryContainer = document.querySelector(".order-history");
     const orderTab = document.getElementById("order-tab");
     const infoTab = document.getElementById("info-tab");
     const orderHistoryContent = document.getElementById("order-history");
     const userInfoContent = document.getElementById("user-info");
+    const logoutbtn = document.getElementById("logout");
+
+    logoutbtn.addEventListener("click", () => {
+        const confirmLogout = confirm("Er du sikker på, at du vil logge ud?");
+        if (confirmLogout) {
+            logout();
+        }
+    })
 
     async function loadOrderHistory() {
         try {
-            const orders = await getCustomerOrdreHistory(1); //TEST IS
+            
+            const orders = await getCustomerOrdreHistory(customer.id); //TEST IS
            
-            const customer = { name: "BASM JAWA" }; //NAVN
-            customerName.textContent = customer.name;
+            //const customer = { name: "BASM JAWA" }; //NAVN
+            customerName.textContent = customer.firstName;
 
             if (orders.length > 0) {
                 orders.forEach(order => {

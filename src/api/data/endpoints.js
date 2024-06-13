@@ -25,7 +25,7 @@ export const orderDetailsEndpoint = '/OD';
 
 export const addressEndpoint = "/address"
 
-export const registerCustomer = '/register'
+export const registerEndpoint = '/customers/register'
 
-export const accessCustomer = '/login'
+export const loginEndpoint = '/customers/login'
 

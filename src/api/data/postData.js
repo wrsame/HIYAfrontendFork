@@ -1,7 +1,8 @@
-import { fetchData, baseApi } from "../requests.js";
+import { login, register } from "../authRequests.js";
+import { fetchData, baseApi, createData } from "../requests.js";
 import { productSeriesEndpoint, productsEndpoint, uploadImagesEndpoint, saveImageUrlsEndpoint,
 addProductToCollectionEndpoint, inventory, collectionEndpoint, materialsEndpoint, ordersEndpoint,
-orderDetailsEndpoint, addressEndpoint } from "./endpoints.js";
+orderDetailsEndpoint, addressEndpoint, registerEndpoint, loginEndpoint } from "./endpoints.js";
 
 //------Endpoints----
 
@@ -65,3 +66,12 @@ export const createOrderDetails = (orderDetailsData) => fetchData(createOperatio
 
 //-----------Address--------------
 export const createAddress = (data) => fetchData(createOperation, addressEndpoint, data)
+
+//-----------Register--------------
+export const registerUser = (userData) => register(registerEndpoint, userData);
+
+//-----------Login--------------
+export const loginUser = (credentials) => login(loginEndpoint, credentials);
+
+
+

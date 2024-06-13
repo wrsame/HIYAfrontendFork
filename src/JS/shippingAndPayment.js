@@ -12,15 +12,9 @@ let products = []
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    //skal hente customer
-    const customer ={
-        id: 1,
-        firstName : "Basma",
-        lastName : "Jawad",
-        email: "basma.jawad02@gmail.com",
-        phone: "+45 42 61 62 25"
+    //henter customer
+    const customer = JSON.parse(sessionStorage.getItem('customer-HIYA'));
 
-    }
     customerEmail.textContent = customer.email
     customerName.textContent = customer.firstName + " " + customer.lastName
     customerPhone.textContent = customer.phone

@@ -10,8 +10,9 @@ let cart = [];
 document.addEventListener("DOMContentLoaded", async function () {
     loadBasket();
 
-    const testOrderBtn = document.querySelector(".create-test-order");
-    testOrderBtn.addEventListener("click", placeOrder);
+    //TEST BTN disabled
+    // const testOrderBtn = document.querySelector(".create-test-order");
+    // testOrderBtn.addEventListener("click", placeOrder);
 
     const goToPayment = document.querySelector(".go-to-payment");
     goToPayment.addEventListener("click", () => {
@@ -145,10 +146,10 @@ function calculateSubtotal() {
 }
 
 //TEST FUNCTION skal slettes
-function placeOrder() {
-    const customerId = 1; //this is for test
-    const addressId = 1; //this is for test
+// function placeOrder() {
+//     const customerId = 1; //this is for test
+//     const addressId = 1; //this is for test
 
-    const subtotal = calculateSubtotal();
-    newOrder(customerId, addressId, cart, subtotal);
-}
+//     const subtotal = calculateSubtotal();
+//     newOrder(customerId, addressId, cart, subtotal);
+// }
