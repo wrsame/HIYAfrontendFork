@@ -158,6 +158,7 @@ async function placeOrder(customerId, addressId) {
 
 
 function confirmOrder(orderId) {
+    const subtotal = calculateSubtotal()
     const mainContent = document.querySelector(".mainContent");
     mainContent.innerHTML = "";
 
@@ -167,15 +168,18 @@ function confirmOrder(orderId) {
     
     const thankYouMessage = document.createElement("h1");
     thankYouMessage.className = "text-4xl font-bold mb-6";
-    thankYouMessage.textContent = "Tak for din ordre";
+    thankYouMessage.textContent = "Tak for din ordre!";
     div.appendChild(thankYouMessage);
 
   
     const orderIdMessage = document.createElement("h2");
     orderIdMessage.className = "text-2xl mb-4";
-    orderIdMessage.textContent = `Ordre ID: ${orderId}`;
+    orderIdMessage.textContent = `Ordre #${orderId}`;
+    const subTotal = document.createElement("h2")
+    subTotal.className = "text-1xl mb-4"
+    subTotal.textContent =`Total: ${subtotal} DKK`;
     div.appendChild(orderIdMessage);
-
+    div.appendChild(subTotal);
    
     const productsContainer = document.createElement("div");
     productsContainer.className = "flex flex-wrap justify-center items-start space-x-4";
@@ -188,7 +192,7 @@ function confirmOrder(orderId) {
         productDiv.className = "p-4 border rounded shadow-lg m-2 w-64";
 
         const productImageDiv = document.createElement("div");
-        productImageDiv.className = "flexjustify-center";
+        productImageDiv.className = "flex justify-center";
         const productImage = document.createElement("img");
         productImage.src = `${baseUrl}${product.images.find(img => img.is_primary).imageURL}`;
         productImage.alt = "Product Image";
@@ -197,8 +201,8 @@ function confirmOrder(orderId) {
         productDiv.appendChild(productImageDiv);
 
         const productName = document.createElement("h3");
-        productName.className = "text-lg font-semibold mb-2 text-center";
-        productName.textContent = product.name;
+        productName.className = "text-lg font-semibold mb-1 text-center";
+        productName.textContent = product.product_series.name;
         productDiv.appendChild(productName);
 
         const productQuantity = document.createElement("p");
