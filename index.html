@@ -13,8 +13,12 @@
     <script src="https://kit.fontawesome.com/d17e4552c5.js" crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-
-
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("fTJ03BWp-9uuAdmSE");
+        })();
+    </script>
 
 </head>
 
@@ -50,7 +54,6 @@
                     <div class="md:hidden inset-y-80 absolute text-white">
                         <button onclick="window.location.href = '/src/HTML/collections/main.html'"
                             class="set-btn-hover shopBtn light-blue-col text-sm">SHOP</button>
-
                     </div>
                 </div>
 
@@ -114,13 +117,17 @@
             <div class="flex flex-col gap-5 items-center justify-center relative z-50">
                 <h1 class="text-4xl text-center">Har du spørgsmål?</h1>
                 <p>Kontakt vores support</p>
-                <div>
-                    <input class="font-sans bg-transparent rounded-md border-white border-2 p-2 px-4 w-96 outline-none "
-                        type="text" placeholder="din@mail.com">
-                </div>
-                <div class=" mt-5">
-                    <button class="font-bold shopBtn primary-light-col text-sm">Submit</button>
-                </div>
+                <form id="contact-form" class="mt-5 flex flex-col items-center">
+                    <div id="initial-input">
+                        <input
+                            class="font-sans bg-transparent rounded-md border-white border-2 p-2 px-4 w-96 outline-none"
+                            type="email" id="email" placeholder="din@mail.com" required>
+                    </div>
+                    <div class="mt-5">
+                        <button id="continue-button" class="font-bold shopBtn primary-light-col text-sm"
+                            type="submit">Fortsæt</button>
+                    </div>
+                </form>
             </div>
         </section>
     </div>

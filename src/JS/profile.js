@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         try {
             const orders = await getCustomerOrdreHistory(1); //TEST IS
            
-            const customer = { name: "BASM JAWA" }; //NAVN
+            const customer = { name: "BASMA JAWAD" }; //NAVN
             customerName.textContent = customer.name;
 
             if (orders.length > 0) {

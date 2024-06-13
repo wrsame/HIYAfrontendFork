@@ -97,46 +97,47 @@ import { getCollections } from "../api/data/getData.js"
             </div>
           </a>
         </div>`;
-  
-      const profileIcon = `
-        <div class="relative inline-block ml-4 flex justify-center ">
-          <button class="profile-btn outline-none" style="outline: none;" onclick="window.location.href= '/src/HTML/profile.html'">
-            <img src="/src/images/profile.png" alt="profile" class="w-7 h-7">
-          </button>`;
     
-        return `
-          <nav class="">
-            <div class="container flex flex-row justify-between items-center">
-              <div class="flex items-center">
-                <a href="/" class="text-black font-bold text-2xl">
-                  <img src="/src/images/FullLogo.png" alt="logo" class="w-24 md:w-32">
-                </a>
-              </div>
-              <div class="hidden md:flex items-center">
-                ${desktopMenu}
-                <div class="ml-4 flex items-center justify-center">${cartIcon}${profileIcon}</div>
-              </div>
-              <div class="md:hidden flex items-center ">
-                <div class="mr-4 flex items-center justify-center">${cartIcon}${profileIcon}</div>
-                <button id="menu-button" class="outline-none text-black p-0">
-                 <img src="https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-462145.png?f=webp" class="w-10">
-                </button>
-              </div>
+      const profileIcon = `
+        <div class="relative inline-block ml-4 flex justify-center">
+          <button class="profile-btn outline-none" style="outline: none;" onclick="window.location.href='/src/HTML/profile.html'">
+            <img src="/src/images/profile.png" alt="profile" class="w-7 h-7">
+          </button>
+        </div>`;
+    
+      return `
+        <nav class="">
+          <div class="container flex flex-row justify-between items-center">
+            <div class="flex items-center">
+              <a href="/" class="text-black font-bold text-2xl">
+                <img src="/src/images/FullLogo.png" alt="logo" class="w-24 md:w-32">
+              </a>
             </div>
-          </nav>
-          <div id="mobile-menu" class="fixed inset-y-0 right-0 bg-white w-5/6 transition-transform transform translate-x-full mobile-menu z-50 shadow-2xl">
-            <div class="flex justify-between items-center p-5">
-              <button id="close-menu-button" class="text-black outline-none" style="outline: none;">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
+            <div class="hidden md:flex items-center">
+              ${desktopMenu}
+              <div class="ml-4 flex items-center justify-center">${cartIcon}${profileIcon}</div>
+            </div>
+            <div class="md:hidden flex items-center">
+              <div class="mr-4 flex items-center justify-center">${cartIcon}${profileIcon}</div>
+              <button id="menu-button" class="outline-none text-black p-0">
+                <img src="https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-462145.png?f=webp" class="w-10">
               </button>
             </div>
-            <div class="p-5">
-              ${mobileMenu}
-            </div>
-          </div>`;
-      }
+          </div>
+        </nav>
+        <div id="mobile-menu" class="fixed inset-y-0 right-0 bg-white w-5/6 transition-transform transform translate-x-full mobile-menu z-50 shadow-2xl">
+          <div class="flex justify-between items-center p-5">
+            <button id="close-menu-button" class="text-black outline-none" style="outline: none;">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="p-5">
+            ${mobileMenu}
+          </div>
+        </div>`;
+    }
     
   
       document.getElementById("navbar-container").innerHTML = buildNavbar(menuItems);
