@@ -1,6 +1,6 @@
 import { productSlider } from "./productSlider.js"; 
 import { getLimitedProducts, getLatestCollections } from "../api/data/getData.js";
-import { setLatestCollections } from "./lastestCollections.js";
+import { setLatestCollections } from "./latestCollections.js";
 
 
 //------produkt slider----
@@ -79,7 +79,7 @@ function getContactFormContent() {
 function getThankYouMessage() {
     return `
         <div class="flex flex-col gap-5 items-center justify-center relative z-50">
-            <h2 class="text-2xl text-center">Tak for at kontakte os, vi vender tilbage</h2>
+            <h2 class="text-2xl text-center">Tak for at kontakte os, vi vender tilbage i løbet af 48 timer! </h2>
         </div>
     `;
 }
