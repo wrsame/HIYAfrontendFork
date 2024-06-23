@@ -1,4 +1,4 @@
-import { getOneProduct } from "../api/data/getData.js";
+import { getOneProduct, getCustomerAddresses } from "../api/data/getData.js";
 import { baseUrl } from "../api/requests.js";
 import { createAddress } from "../api/data/postData.js";
 import { newOrder } from './placeOrder.js';
@@ -7,14 +7,20 @@ const customerName = document.querySelector(".Customer-name")
 const customerEmail = document.querySelector(".Customer-email")
 const customerPhone = document.querySelector(".Customer-phone")
 
+const savedAddressesDropdown = document.getElementById("saved-addresses");
+const newAddressBtn = document.getElementById("new-address-btn");
+const addressForm = document.getElementById("address-form");
+const loadingIndicator = document.getElementById("loading-indicator");
+
 let cart = []
 let products = []
 
-document.addEventListener("DOMContentLoaded", () => {
 
-    //henter customer
+document.addEventListener("DOMContentLoaded", async () => {
+    
     const customer = JSON.parse(sessionStorage.getItem('customer-HIYA'));
-
+    if (!customer){ window.location.href = '/src/html/loginAndRegistration.html'}
+    
     customerEmail.textContent = customer.email
     customerName.textContent = customer.firstName + " " + customer.lastName
     customerPhone.textContent = customer.phone
@@ -32,21 +38,43 @@ document.addEventListener("DOMContentLoaded", () => {
             addressForm.reportValidity();
         }
         else{
-
-            //gennemfør betaling først...
-
-            //post addresse
-            const address = await newCustomerAddress(customer.id)
-            console.log(address);
-            if (address.id){
-                let order = await placeOrder(customer.id, address.id)
-               if(order.id){
-                    confirmOrder(order.id)
-               }
-            }
+            handleOrderProcess(customer)
         }
     });
 
+    //----henter addresser----
+
+    try {
+        const addresses = await getCustomerAddresses(customer.id)
+        if (addresses.length > 0) {
+            populateAddressDropdown(addresses);
+        }
+       
+        savedAddressesDropdown.addEventListener("change", (event) => {
+            const selectedAddressId = event.target.value;
+            
+            if (selectedAddressId) {
+                const selectedAddress = addresses.find(addr => addr.id == selectedAddressId);
+                fillFormWithAddress(selectedAddress);
+                const inputs = addressForm.querySelectorAll('input, select');
+                    inputs.forEach(input => {
+                        input.classList.add("bg-gray-100");
+                        input.style.outline = "none";
+                    });
+                    savedAddressesDropdown.classList.remove("bg-gray-100")
+            } 
+            else {
+                resetForm();
+            }
+        });
+    
+        // Event listener til "ny adresse" knap
+        newAddressBtn.addEventListener("click", resetForm);
+
+    } catch (error) {
+        console.error("Error fetching addresses:", error);
+    }
+   
 })
 
 async function loadBasket() {
@@ -63,6 +91,31 @@ async function loadBasket() {
     }
 }
 
+async function handleOrderProcess(customer) {
+    try {
+        loadingIndicator.classList.remove("hidden");
+
+        // Gennemfør betaling først...
+
+        // Post adresse
+        let addressId = savedAddressesDropdown.value 
+            ? savedAddressesDropdown.value 
+            : (await newCustomerAddress(customer.id)).id;
+
+        if (addressId) {
+            let order = await placeOrder(customer.id, addressId);
+            if (order.id) {
+                confirmOrder(order.id);
+            }
+        }
+    } catch (error) {
+        console.error("Fejl under ordreprocessen:", error);
+    } finally {
+        
+        loadingIndicator.classList.add("hidden");
+    }
+}
+
 function createProductHTML(product) {
     const productHTML = `
             <div class="flex items-center mb-6">
@@ -76,7 +129,6 @@ function createProductHTML(product) {
     `;
     return productHTML;
 }
-
 
 function createProductHTMLMobile(product) {
     return `
@@ -156,7 +208,6 @@ async function placeOrder(customerId, addressId) {
     return await newOrder(customerId, addressId, cart, subtotal);
 }
 
-
 function confirmOrder(orderId) {
     const subtotal = calculateSubtotal()
     const mainContent = document.querySelector(".mainContent");
@@ -220,8 +271,58 @@ function confirmOrder(orderId) {
 
     mainContent.appendChild(div);
 
-    //for at resette
-    //localStorage.removeItem('HIYAcart');
+    //for at resette kurv
+    localStorage.removeItem('HIYAcart');
 }
 
 
+//------------ Addresse drop down ------------
+
+// Udfylde dropdown med adresser
+function populateAddressDropdown(addresses) {
+    document.querySelector(".addresses-dropdown-div").classList.remove("hidden")
+    addresses.forEach(address => {
+        const option = document.createElement("option");
+        option.value = address.id;
+        option.textContent = `${address.street}, ${address.city}`;
+        savedAddressesDropdown.appendChild(option);
+    });
+}
+
+// Udfylde formular med valgt adresse
+function fillFormWithAddress(address) {
+
+    document.getElementById("name").value = address.name;
+    document.getElementById("country").value = address.country;
+    document.getElementById("company").value = address.company || "";
+    document.getElementById("address").value = address.street;
+    document.getElementById("apartment").value = address.apartment || "";
+    document.getElementById("postalcode").value = address.postalcode;
+    document.getElementById("city").value = address.city;
+    document.getElementById("region").value = address.region;
+
+    //htmlCollection til liste
+    Array.from(addressForm.elements).forEach(el => {
+        if (el.tagName === 'INPUT' || el.tagName === 'SELECT') {
+            el.readOnly = true;
+        }
+    });
+
+    newAddressBtn.classList.remove("hidden");
+}
+
+function resetForm() {
+    addressForm.reset();
+
+    Array.from(addressForm.elements).forEach(el => {
+        if (el.tagName === 'INPUT' || el.tagName === 'SELECT') {
+            el.readOnly = false;
+        }
+    });
+
+    newAddressBtn.classList.add("hidden");
+    const inputs = addressForm.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.classList.remove("bg-gray-100");
+    });
+}

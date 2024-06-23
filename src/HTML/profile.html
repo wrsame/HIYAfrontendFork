@@ -31,14 +31,16 @@
         <div class="p-10 lg:p-20 lg:px-32 flex flex-col ">
             <div class="container mb-2 md:mb-16">
                 <h1 class="text-3xl md:text-4xl font-semibold text-gray-800">Godt at se dig igen, <span
-                        class="customerName font-bold"></span>!</h1>
+                        class="customerName font-bold capitalize"></span>!</h1>
             </div>
             <div class="container my-10 font-sans">
                 <nav class="primary-bgColor text-white rounded-lg shadow-lg">
                     <ul class="flex flex-wrap space-x-4 p-4">
                         <li><a href="#" id="order-tab"
                                 class="tab-link hover:underline px-5 border-r border-white active">ORDRE</a></li>
-                        <li><a href="#" id="info-tab" class="tab-link hover:underline px-5 border-r border-white active">MINE OPLYSNINGER</a></li>
+                        <li><a href="#" id="info-tab"
+                                class="tab-link hover:underline px-5 border-r border-white active">MINE OPLYSNINGER</a>
+                        </li>
                         <li><a href="#" id="logout" class="tab-link hover:underline">LOG AF</a></li>
                     </ul>
                 </nav>
@@ -52,33 +54,44 @@
                 </div>
                 <div id="user-info" class="tab-content hidden">
                     <h2 class="text-2xl font-semibold text-gray-800">Mine Oplysninger</h2>
-                    <form class="user-info-form bg-white p-8 rounded-lg shadow mt-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="first_name" class="block text-sm font-medium text-gray-700">Fulde
-                                    navn</label>
-                                <input type="text" id="first_name" name="first_name"
-                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                    required>
+                    <div class="flex items-center justify-center ">
+                        <form class="user-info-form bg-white p-8 w-full rounded-lg shadow mt-7 font-sans">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                <div>
+                                    <label for="first_name"
+                                        class="block text-sm font-medium text-gray-700">Fornavn</label>
+                                    <input type="text" id="first_name" name="first_name"
+                                        class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 "
+                                        required>
+                                </div>
+                                <div>
+                                    <label for="last_name"
+                                        class="block text-sm font-medium text-gray-700">Efternavn</label>
+                                    <input type="text" id="last_name" name="last_name"
+                                        class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 "
+                                        required>
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium text-gray-700">Mobil
+                                        nummer</label>
+                                    <input type="text" id="phone" name="phone"
+                                        class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700">E-mail</label>
+                                    <input type="email" id="email" name="email"
+                                        class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                                        required>
+                                </div>
                             </div>
-                            <div>
-                                <label for="phone" class="block text-sm font-medium text-gray-700">Mobil nummer</label>
-                                <input type="text" id="phone" name="phone"
-                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <div class="mt-6">
+                                <button type="submit"
+                                    class=" rounded-md font-sans text-base light-blue-col text-white p-1 px-7 hover:opacity-70"
+                                    disabled>Gem</button>
                             </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700">E-mail</label>
-                                <input type="email" id="email" name="email"
-                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="mt-6">
-                            <button type="submit"
-                                class="w-full rounded-lg font-sans text-2xl bg-black p-4 text-white hover:opacity-70">GEM
-                                ÆNDRINGER</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>

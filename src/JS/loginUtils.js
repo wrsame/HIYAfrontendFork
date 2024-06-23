@@ -2,6 +2,13 @@ import { registerUser, loginUser } from "../api/data/postData.js";
 
 
 document.addEventListener("DOMContentLoaded", function () {
+
+    //redirecting to 
+    const customer = JSON.parse(sessionStorage.getItem('customer-HIYA'));
+    if(customer){
+        window.location.href="/src/HTML/profile.html"
+    }
+
     const loginForm = document.getElementById("login-form");
     const signupForm = document.getElementById("signup-form");
     const showSignupLink = document.getElementById("show-signup");
@@ -9,14 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     showSignupLink.addEventListener("click", function (e) {
         e.preventDefault();
-        console.log("Login link clicked");
         loginForm.classList.add("hidden");
         signupForm.classList.remove("hidden");
     });
 
     showLoginLink.addEventListener("click", function (e) {
         e.preventDefault();
-        console.log("Login link clicked");
         signupForm.classList.add("hidden");
         loginForm.classList.remove("hidden");
     });
@@ -38,23 +43,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 phone: document.getElementById("signup-phone").value
             };
 
-            console.log(userData)
-
             try {
                 await registerUser(userData);
-                console.log("Sign up successful");
-                window.history.back();
-                // signupForm.reset();
-                // signupForm.classList.add("hidden");
-                // loginForm.classList.remove("hidden");
+                goToPreviousPage()
             } catch (error) {
-                console.error("Sign up failed", error);
+                alert(error)
             }
         }
     });
 
-
     loginForm.addEventListener("submit", async function (e) {
+        
+        const errorDiv = document.querySelector(".error-msg");
+        errorDiv ? errorDiv.textContent = "" : null;
+        
         e.preventDefault();
         const credentials = {
             email: document.getElementById("login-email").value,
@@ -64,10 +66,21 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
             await loginUser(credentials);
             console.log("Login successful");
-            window.history.back();
-            // loginForm.reset();
+            goToPreviousPage()
         } catch (error) {
             console.error("Login failed", error);
+            
+            const errorMsg = document.createElement("div")
+            errorMsg.textContent = "Adgangskode eller brugernavn er forkert. Prøv igen"
+            errorMsg.classList.add("error-msg")
+            errorMsg.classList.add("text-red-600")
+            loginForm.appendChild(errorMsg)
         }
     });
 });
+
+function goToPreviousPage(){
+
+    const previousUrl = document.referrer;
+    window.location.href = previousUrl;
+}

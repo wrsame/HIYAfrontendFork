@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     collections[1].imgSrc = "https://i.pinimg.com/564x/c0/80/c0/c080c0d9f114bbc816565c219bbf40dd.jpg";
     collections[2].imgSrc = "https://i.pinimg.com/564x/96/8c/6c/968c6c2664906f5a1f8aea07509ac9c9.jpg";
 
-
     setLatestCollections(collections, 'collections-container')
     initializeContactForm() 
 

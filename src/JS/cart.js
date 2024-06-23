@@ -8,16 +8,15 @@ let products = [];
 let cart = [];
 
 document.addEventListener("DOMContentLoaded", async function () {
+    
     loadBasket();
 
-    //TEST BTN disabled
-    // const testOrderBtn = document.querySelector(".create-test-order");
-    // testOrderBtn.addEventListener("click", placeOrder);
-
     const goToPayment = document.querySelector(".go-to-payment");
-    goToPayment.addEventListener("click", () => {
-        window.location.href = "/src/HTML/payment.html";
-    });
+    if (goToPayment){
+        goToPayment.addEventListener("click", () => {
+            window.location.href = "/src/HTML/payment.html";
+        });
+    }
 
     const products = await getLimitedProducts(8);
     productSlider(products, 'productSlider'); //productSlider is sectionId
@@ -25,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 async function loadBasket() {
     const basketContainer = document.getElementById('basket-container');
-    basketContainer.innerHTML = "";  // Clear the basket container
+    basketContainer.innerHTML = ""; 
     cart = JSON.parse(localStorage.getItem('HIYAcart')) || [];
 
     if (cart.length === 0) {
@@ -140,16 +139,7 @@ function updateSubtotal() {
 
 function calculateSubtotal() {
     return cart.reduce((acc, item) => {
-        const product = products.find(p => p.id === item.id);
+        const product = products.find(product => product.id === item.id);
         return product ? acc + (product.price * item.quantity) : acc;
     }, 0);
 }
-
-//TEST FUNCTION skal slettes
-// function placeOrder() {
-//     const customerId = 1; //this is for test
-//     const addressId = 1; //this is for test
-
-//     const subtotal = calculateSubtotal();
-//     newOrder(customerId, addressId, cart, subtotal);
-// }

@@ -14,16 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
             isActive: formData.get('isActive') === 'on'
         };
 
-        console.log(data);
-
         try {
             const response = await createCollection(data);
-            if (response.success) { 
                 alert('kollektion blev succesfuldt oprettet!');
                 collectionForm.reset();
-            } else {
-                throw new Error('creation failed', response);
-            }
         } catch (error) {
             alert('Der opstod en fejl ved oprettelse af kollektionen.');
         }

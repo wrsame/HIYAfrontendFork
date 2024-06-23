@@ -17,15 +17,13 @@ export const createProduct = (productData) => fetchData(createOperation, product
 //-----------Images--------------
 export const uploadImages = async (formData) => {
     console.log(`${baseApi}${uploadImagesEndpoint}`);
-    console.log(formData);
     return fetch(`${baseApi}${uploadImagesEndpoint}`, {
         method: 'POST',
         body: formData
     })
     .then(response => {
         if (!response.ok) {
-            console.log("HAAAAAAAAAAA");
-            throw new Error('Network response was not ok');
+            throw new Error('Network response was not ok, failed to upload images');
         }
         return response.json();
     })

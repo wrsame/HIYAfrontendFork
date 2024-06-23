@@ -22,9 +22,6 @@ async function login(endpoint, credentials) {
         body: JSON.stringify(credentials)
     });
 
-    console.log('Response status:', response.status); 
-    console.log('Response:', response);
-
     if (!response.ok) {
         throw new Error(`Failed to login: ${response.statusText}`);
     }
@@ -47,7 +44,8 @@ async function register(endpoint, userData) {
     });
 
     if (!response.ok) {
-        throw new Error(`Failed to register: ${response.statusText}`);
+        const errorData = await response.json();
+        throw new Error(`Failed to register: ${JSON.stringify(errorData)}`);
     }
 
     const data = await response.json();

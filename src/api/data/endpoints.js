@@ -24,6 +24,7 @@ export const ordersEndpoint = '/orders';
 export const orderDetailsEndpoint = '/OD';
 
 export const addressEndpoint = "/address"
+export const customerAddresses = "/addresses/customer/"
 
 export const registerEndpoint = '/customers/register'
 
