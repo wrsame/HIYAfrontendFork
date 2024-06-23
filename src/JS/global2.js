@@ -13,15 +13,15 @@ import { getCollections } from "../api/data/getData.js"
             { name: "Alle smykker", href: `${basePath}/collections/main.html#all` },
           ],
         },
-        {
-          name: "Kollektioner",
-          href: "#menu2",
-          dropdown: [
-            { name: "Submenu 1", href: "#submenu2-1" },
-            { name: "Submenu 2", href: "#submenu2-2" },
-            { name: "Submenu 3", href: "#submenu2-3" },
-          ],
-        },
+        // {
+        //   name: "Kollektioner",
+        //   href: "#menu2",
+        //   dropdown: [
+        //     { name: "Submenu 1", href: "#submenu2-1" },
+        //     { name: "Submenu 2", href: "#submenu2-2" },
+        //     { name: "Submenu 3", href: "#submenu2-3" },
+        //   ],
+        // },
         {
           name: "Om Hiya",
           href: `${basePath}/aboutUs.html`,

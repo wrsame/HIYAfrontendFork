@@ -15,12 +15,9 @@ export async function newOrder(customerId, addressId, cart, subtotal) {
             productCount: cart.length,
             address_id: addressId,
         };
-
-        console.log("data: ", data);
     
         try {
             const order = await createOrder(data);
-            console.log("order: ", order);
             await postOrderDetails(cart, order.id);
             console.log('Order and details created successfully');
             return order
@@ -49,11 +46,9 @@ async function postOrderDetails(cart, orderId) {
                 total: item.quantity * product.price
             };
 
-            console.log("ORDER DETAILS: ", data);
-
             await createOrderDetails(data);
+
             const inventory = await getOneInventoryByProduct(product.id)
-            console.log("inventory: ", inventory);
             await updateInventory(product.id, {quantity : inventory.quantity - item.quantity });
         });
 

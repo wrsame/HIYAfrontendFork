@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const deleteButton = document.createElement('button');
             deleteButton.className = 'bg-red-500 text-white px-4 py-2 rounded-md hover:bg-black';
-            deleteButton.textContent = 'Delete';
+            deleteButton.textContent = 'Slet';
             deleteButton.addEventListener('click', async () => {
                 try {
                     await deleteProduct(product.id);

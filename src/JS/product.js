@@ -9,45 +9,45 @@ document.addEventListener("DOMContentLoaded", async function () {
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id');
     const product = await getOneProduct(productId)
-    console.log("product: ", product);
-
-    showImages(product.images)
-    imgSliderOnMobile(product.images)
-
-    const buyButton = document.querySelector(".buybutton")
-    const productQuantity = document.querySelector(".productQuantity")
-
-    buyButton.addEventListener("click", function () {
-        const quantity = parseInt(productQuantity.value);
-
-        if (quantity > 0) {
-
-            let cart = JSON.parse(localStorage.getItem('HIYAcart')) || [];
-            const existingProduct = cart.find(item => item.id === product.id);
-
-            if (existingProduct) {
-                existingProduct.quantity += quantity;
-            } else {
-                cart.push({ id: product.id, quantity: quantity });
-            }
-            localStorage.setItem('HIYAcart', JSON.stringify(cart));
-            buyButton.style.outline = "none"
-            buyButton.innerText = "Tilføjet";
-            buyButton.classList.add("primary-light-col");
-            updateCartQuantityBadge()
-
-           //resets btn
-            setTimeout(() => {
-                buyButton.innerText = "Køb";
-                buyButton.classList.remove("primary-light-col");
-            }, 1000);
-
-        } else {
-            alert("Fejl, prøv igen");
-        }
-    });
-
+    
     if (product) {
+
+        showImages(product.images)
+        imgSliderOnMobile(product.images)
+
+        const buyButton = document.querySelector(".buybutton")
+        const productQuantity = document.querySelector(".productQuantity")
+
+        buyButton.addEventListener("click", function () {
+            const quantity = parseInt(productQuantity.value);
+
+            if (quantity > 0) {
+
+                let cart = JSON.parse(localStorage.getItem('HIYAcart')) || [];
+                const existingProduct = cart.find(item => item.id === product.id);
+
+                if (existingProduct) {
+                    existingProduct.quantity += quantity;
+                } else {
+                    cart.push({ id: product.id, quantity: quantity }); //Produkt Objekt der gemmes i i localStorage
+                }
+                localStorage.setItem('HIYAcart', JSON.stringify(cart));
+                buyButton.style.outline = "none"
+                buyButton.innerText = "Tilføjet";
+                buyButton.classList.add("primary-light-col");
+                updateCartQuantityBadge()
+
+            //resets btn
+                setTimeout(() => {
+                    buyButton.innerText = "Køb";
+                    buyButton.classList.remove("primary-light-col");
+                }, 1000); //1s
+
+            } else {
+                alert("Fejl, prøv igen");
+            }
+        });
+
         fillProductDetails(product)
         productsByProductSeries(product.product_series.id)
         
@@ -94,12 +94,11 @@ function imgSliderOnMobile(urls) {
         img.src = `${baseUrl}${x.imageURL}`;
         img.className = 'w-full h-6/12 object-cover';
 
-
         div.appendChild(img);
         swiperslide.appendChild(div)
         swiperWrapper.appendChild(swiperslide);
     });
-
+ 
 }
 
 function fillProductDetails(product) {
@@ -121,17 +120,20 @@ async function productsByProductSeries(id){
 }
 
 function fillMaterials(products) {
+
+    const materialUrls = {
+        "18k Guldbelagt Sterling Sølv": "https://img.freepik.com/free-vector/gradient-solid-gold-background_23-2150993766.jpg?size=626&ext=jpg&ga=GA1.1.44546679.1716854400&semt=sph",
+        "295 Sterling Sølv": "https://as1.ftcdn.net/v2/jpg/02/07/13/36/1000_F_207133679_tGuezrUoWSoJtNfxXaaK4jSrXpZHNqr6.jpg"
+    };
+
     const materialsBox = document.querySelector('.materialsBox');
-    materialsBox.innerHTML=""
-    let src = "";
+    materialsBox.innerHTML = "";
 
     products.forEach(product => {
-        console.log(product);
-
-        if (product.material.name === "18k Guldbelagt Sterling Sølv") {
-            src = "https://img.freepik.com/free-vector/gradient-solid-gold-background_23-2150993766.jpg?size=626&ext=jpg&ga=GA1.1.44546679.1716854400&semt=sph";
-        } else {
-            src = "https://as1.ftcdn.net/v2/jpg/02/07/13/36/1000_F_207133679_tGuezrUoWSoJtNfxXaaK4jSrXpZHNqr6.jpg"; 
+        const src = materialUrls[product.material.name];
+        
+        if (!src) {
+            return;
         }
 
         const a = document.createElement('a');
@@ -143,13 +145,11 @@ function fillMaterials(products) {
         img.src = src;
         img.className = 'rounded-sm w-8 h-8 border border-gray-300 cursor-pointer material-box';
 
-        // Append the image to the anchor
         a.appendChild(img);
-
-        // Append the anchor to the materials box
         materialsBox.appendChild(a);
     });
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const decrementButton = document.querySelector('.decrement-btn');
@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// følgende kode SKAL BLIVE HER ---------
+//-------- SLIDER ---------
 
 var swiper = new Swiper(".default-carousel", {
     loop: true,

@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         const collections = await getCollections();
-        console.log('Fetched collections:', collections);
         populateDropdown(collectionsDropdown, collections);
     } catch (error) {
         console.error('Error fetching collections:', error);
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         const materials = await getMaterials();
-        console.log('Fetched materials:', materials);
         populateDropdown(materialsDropdown, materials);
     } catch (error) {
         console.error('Error fetching materials:', error);
@@ -31,8 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         const productsSeries = await getProductSeries();
-        console.log('Fetched products:', productsSeries);
-        populateDropdown(productNameSelect, productsSeries, 'name');
+        populateDropdown(productNameSelect, productsSeries);
     } catch (error) {
         console.error('Error fetching products:', error);
     }
@@ -96,7 +93,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 combinedFormData.append('images[]', image);
             });
 
-            // console.log("Combined FormData for upload: ", Array.from(combinedFormData.entries()));
+            //Billederne skal sendes formData, og ikke JSON
             const uploadedURLs = await uploadImages(combinedFormData);
             console.log("Uploaded URLs: ", uploadedURLs);
 
@@ -107,7 +104,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     isPrimary: index === 0 && primaryImage ? true : false
                 });
             });
-            console.log("allImages: ", allImages);
+
             await saveImageUrls(data.product.id, allImages);
 
             const selectedCollections = Array.from(formData.getAll('collection'));

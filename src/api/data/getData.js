@@ -1,6 +1,6 @@
 import { fetchData } from "../requests.js";
 import { inventory, inventoryByProduct, customersEndpoint, limitedProductsEndpoint, latestCollectionsEndpoint,
-    collectionEndpoint, materialsEndpoint, productSeriesEndpoint, productsEndpoint, productsByProductSeries, ordersEndpoint } from "./endpoints.js";
+    collectionEndpoint, materialsEndpoint, productSeriesEndpoint, productsEndpoint, productsByProductSeries, ordersEndpoint, customerAddresses } from "./endpoints.js";
 
 
 const readOperation = 'read'
@@ -32,6 +32,11 @@ export const getOneInventoryByProduct = (id) => fetchData(readOperation, `${inve
 //-------Get Customer ------------
 export const getOneCustomer = (id) => fetchData(readOperation, `${customersEndpoint}/${id}`);
 export const getCustomerOrdreHistory = (id) => fetchData(readOperation, `${customersEndpoint}/${id}${ordersEndpoint}`);
+
+
+//-------Get Customer Addresses ------------
+export const getCustomerAddresses = (customerId) => fetchData(readOperation, `${customerAddresses}${customerId}`);
+
 
 
 

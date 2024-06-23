@@ -12,37 +12,45 @@
 
 </head>
 
-<body class="primary-bgColor p-20 flex flex-col gap-20 items-center justify-center min-h-screen">
-    <form id="collectionForm" class="bg-white p-8 rounded-lg shadow-md w-full max-w-lg" enctype="multipart/form-data">
-        <h1 class="text-3xl">Opret Kollektion</h1>
-        <div class="my-4">
-            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Navn:</label>
-            <input type="text" id="name" name="name" class="border border-gray-300 rounded-md p-2 w-full">
-        </div>
-        <div class="mb-4">
-            <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Beskrivelse:</label>
-            <textarea id="description" name="description"
-                class="border border-gray-300 rounded-md p-2 w-full"></textarea>
-        </div>
-        <div class="mb-4">
-            <label for="isActive" class="block text-gray-700 text-sm font-bold mb-2">Aktiv:</label>
-            <input type="checkbox" id="isActive" name="isActive" checked class="form-checkbox h-5 w-5 text-blue-600">
-        </div>
-        <div class="text-right">
-            <button type="submit" class="primary-bgColor text-white rounded-md px-4 py-2">Gem</button>
-        </div>
-    </form>
+<body class="primary-bgColor">
+    <div class="w-full flex justify-end p-10">
+        <Button class="rounded-md primary-light-col text-black"
+            onclick="window.location.href='/src/admin/newproduct.html'">Nyt produkt -></Button>
+    </div>
+    <div class="flex gap-20 justify-center">
+        <form id="collectionForm" class="bg-white p-8 rounded-lg shadow-md w-full max-w-lg"
+            enctype="multipart/form-data">
+            <h1 class="text-3xl">Opret Kollektion</h1>
+            <div class="my-4">
+                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Navn:</label>
+                <input type="text" id="name" name="name" class="border border-gray-300 rounded-md p-2 w-full">
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Beskrivelse:</label>
+                <textarea id="description" name="description"
+                    class="border border-gray-300 rounded-md p-2 w-full"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="isActive" class="block text-gray-700 text-sm font-bold mb-2">Aktiv:</label>
+                <input type="checkbox" id="isActive" name="isActive" checked
+                    class="form-checkbox h-5 w-5 text-blue-600">
+            </div>
+            <div class="text-right">
+                <button type="submit" class="primary-bgColor text-white rounded-md px-4 py-2">Gem</button>
+            </div>
+        </form>
 
-    <form id="MaterialForm" class="bg-white p-8 rounded-lg shadow-md w-full max-w-lg" enctype="multipart/form-data">
-        <h1 class="text-3xl">Opret Materiale</h1>
-        <div class="my-4">
-            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Navn:</label>
-            <input type="text" id="name" name="name" class="border border-gray-300 rounded-md p-2 w-full">
-        </div>
-        <div class="text-right">
-            <button type="submit" class="primary-bgColor text-white rounded-md px-4 py-2">Gem</button>
-        </div>
-    </form>
+        <form id="MaterialForm" class="bg-white p-8 rounded-lg shadow-md w-full max-w-lg" enctype="multipart/form-data">
+            <h1 class="text-3xl">Opret Materiale</h1>
+            <div class="my-4">
+                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Navn:</label>
+                <input type="text" id="name" name="name" class="border border-gray-300 rounded-md p-2 w-full">
+            </div>
+            <div class="text-right self-end">
+                <button type="submit" class="primary-bgColor text-white rounded-md px-4 py-2">Gem</button>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>
