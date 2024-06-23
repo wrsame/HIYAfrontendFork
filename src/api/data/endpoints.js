@@ -29,3 +29,9 @@ export const registerEndpoint = '/customers/register'
 
 export const loginEndpoint = '/customers/login'
 
+export const loginEmployeeEndpoint = '/employees/login'
+
+export const registerEmployeeEndpoint = '/employees/register'
+
+
+

@@ -2,7 +2,7 @@ import { login, register } from "../authRequests.js";
 import { fetchData, baseApi, createData } from "../requests.js";
 import { productSeriesEndpoint, productsEndpoint, uploadImagesEndpoint, saveImageUrlsEndpoint,
 addProductToCollectionEndpoint, inventory, collectionEndpoint, materialsEndpoint, ordersEndpoint,
-orderDetailsEndpoint, addressEndpoint, registerEndpoint, loginEndpoint } from "./endpoints.js";
+orderDetailsEndpoint, addressEndpoint, registerEndpoint, loginEndpoint, registerEmployeeEndpoint, loginEmployeeEndpoint } from "./endpoints.js";
 
 //------Endpoints----
 
@@ -67,11 +67,15 @@ export const createOrderDetails = (orderDetailsData) => fetchData(createOperatio
 //-----------Address--------------
 export const createAddress = (data) => fetchData(createOperation, addressEndpoint, data)
 
-//-----------Register--------------
+//-----------Register CUSTOMER--------------
 export const registerUser = (userData) => register(registerEndpoint, userData);
 
-//-----------Login--------------
+//-----------Login CUSTOMER --------------
 export const loginUser = (credentials) => login(loginEndpoint, credentials);
 
+//-----------Register EMPLOYEE--------------
+export const registerEmployee = (userDataEM) => register(registerEmployeeEndpoint, userDataEM);
 
 
+//-----------Login EMPLOYEE--------------
+export const loginEmployee = (credentialsEM) => login(loginEmployeeEndpoint, credentialsEM);
